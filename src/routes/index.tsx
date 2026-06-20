@@ -70,7 +70,7 @@ function Portfolio() {
             </span>
           </div>
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            UP·V
+            {"\n"}
           </span>
         </header>
 
@@ -93,7 +93,7 @@ function Portfolio() {
 
           <div className="flex flex-col justify-center md:col-span-7">
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.4em] text-primary">
-              Portfolio · 2026
+              {"\n"}
             </p>
             <h1 className="font-display text-6xl leading-[0.95] tracking-tight text-foreground md:text-8xl">
               UDHAYA
