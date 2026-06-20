@@ -85,7 +85,7 @@ function Portfolio() {
                 className="aspect-[4/5] w-full object-contain scale-105 transition-transform duration-500 hover:scale-110"
               />
               <p className="absolute bottom-4 left-0 right-0 text-center font-display text-2xl uppercase tracking-[0.4em] text-foreground md:text-3xl">
-                Portfolio
+                PORTFOLIO
               </p>
             </div>
           </div>
