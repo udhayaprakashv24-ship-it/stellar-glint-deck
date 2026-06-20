@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import portrait from "@/assets/udhaya-portrait.jpeg.asset.json";
+import portrait from "@/assets/udhaya-portrait-nobg.png.asset.json";
 import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
   BarChart3, Database, Palette, Brain,
