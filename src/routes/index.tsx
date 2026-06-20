@@ -75,14 +75,14 @@ function Portfolio() {
         </header>
 
         {/* Hero */}
-        <section className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12">
-          <div className="relative md:col-span-5">
+        <section className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12 items-center">
+          <div className="relative md:col-span-6">
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/40 via-transparent to-transparent blur-2xl" aria-hidden />
             <div className="relative">
               <img
                 src={portrait.url}
                 alt="Portrait of Udhaya Prakash V"
-                className="aspect-[4/5] w-full object-contain"
+                className="aspect-[4/5] w-full object-contain scale-105 transition-transform duration-500 hover:scale-110"
               />
               <p className="absolute bottom-4 left-0 right-0 text-center font-display text-2xl uppercase tracking-[0.4em] text-foreground md:text-3xl">
                 Portfolio
@@ -91,7 +91,7 @@ function Portfolio() {
           </div>
 
 
-          <div className="flex flex-col justify-center md:col-span-7">
+          <div className="flex flex-col justify-center md:col-span-6">
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.4em] text-primary">
               {"\n"}
             </p>
