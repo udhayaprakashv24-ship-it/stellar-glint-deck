@@ -108,11 +108,11 @@ function Portfolio() {
         </section>
 
         {/* About */}
-        <section className="mt-24 grid grid-cols-1 gap-8 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <SectionLabel index="01" title="About Me" />
+        <section className="mt-24">
+          <div className="mb-8">
+            <SectionLabel title="About Me" />
           </div>
-          <div className="md:col-span-8">
+          <div className="max-w-4xl">
             <div className="space-y-6">
               <p className="text-xl md:text-2xl leading-relaxed text-foreground/90 border-l-2 border-primary/60 pl-4 font-light">
                 B.Tech student in Artificial Intelligence & Data Science. Turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
@@ -125,31 +125,29 @@ function Portfolio() {
         </section>
 
         {/* Core Skills */}
-        <section className="mt-24 grid grid-cols-1 gap-8 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <SectionLabel index="02" title="Core Skills" />
+        <section className="mt-24">
+          <div className="mb-8">
+            <SectionLabel title="Core Skills" />
           </div>
-          <div className="md:col-span-8">
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {skills.map(({ name, icon: Icon }) => (
-                <div
-                  key={name}
-                  className="group flex items-center gap-3 rounded-xl border border-border bg-card/60 px-4 py-3 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)]"
-                >
-                  <Icon className="h-4 w-4 shrink-0 text-primary" />
-                  <span className="text-sm font-medium text-foreground/90">{name}</span>
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+            {skills.map(({ name, icon: Icon }) => (
+              <div
+                key={name}
+                className="group flex items-center gap-3 rounded-xl border border-border bg-card/60 px-4 py-3 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)]"
+              >
+                <Icon className="h-4 w-4 shrink-0 text-primary" />
+                <span className="text-sm font-medium text-foreground/90">{name}</span>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* Tools & Proficiency */}
-        <section className="mt-24 grid grid-cols-1 gap-8 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <SectionLabel index="03" title="Tools & Proficiency" />
+        <section className="mt-24">
+          <div className="mb-8">
+            <SectionLabel title="Tools & Proficiency" />
           </div>
-          <div className="md:col-span-8 space-y-5">
+          <div className="max-w-4xl space-y-5">
             {proficiency.map(({ name, value }) => (
               <div key={name}>
                 <div className="mb-2 flex items-baseline justify-between">
@@ -168,27 +166,25 @@ function Portfolio() {
         </section>
 
         {/* Contact */}
-        <section className="mt-24 grid grid-cols-1 gap-8 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <SectionLabel index="04" title="Contact" />
+        <section className="mt-24">
+          <div className="mb-8">
+            <SectionLabel title="Contact" />
           </div>
-          <div className="md:col-span-8">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {contacts.map(({ icon: Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel="noreferrer"
-                  className="group flex items-center gap-3 rounded-xl border border-border bg-card/60 px-4 py-3 backdrop-blur transition hover:border-primary/60 hover:bg-card"
-                >
-                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/15 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  <span className="truncate text-sm text-foreground/90">{label}</span>
-                </a>
-              ))}
-            </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+            {contacts.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel="noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-border bg-card/60 px-4 py-3 backdrop-blur transition hover:border-primary/60 hover:bg-card"
+              >
+                <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/15 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Icon className="h-4 w-4" />
+                </span>
+                <span className="truncate text-sm text-foreground/90">{label}</span>
+              </a>
+            ))}
           </div>
         </section>
 
@@ -202,11 +198,10 @@ function Portfolio() {
   );
 }
 
-function SectionLabel({ index, title }: { index: string; title: string }) {
+function SectionLabel({ title }: { title: string }) {
   return (
-    <div className="sticky top-8">
-      <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">{index}</div>
-      <h2 className="mt-2 font-display text-4xl tracking-wide text-foreground md:text-5xl">{title}</h2>
+    <div>
+      <h2 className="font-display text-4xl tracking-wide text-foreground md:text-5xl">{title}</h2>
       <div className="mt-4 h-px w-16 bg-primary" />
     </div>
   );
