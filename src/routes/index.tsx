@@ -108,13 +108,13 @@ function Portfolio() {
         </section>
 
         {/* About */}
-        <section className="mt-24 grid grid-cols-1 gap-8 md:grid-cols-12">
-          <div className="md:col-span-4">
+        <section className="mt-24">
+          <div className="mb-8">
             <SectionLabel index="01" title="About Me" />
           </div>
-          <div className="md:col-span-8">
+          <div className="max-w-4xl">
             <div className="space-y-6">
-              <p className="text-lg md:text-xl leading-relaxed text-foreground/90 border-l-2 border-primary/60 pl-4 font-light">
+              <p className="text-xl md:text-2xl leading-relaxed text-foreground/90 border-l-2 border-primary/60 pl-4 font-light">
                 B.Tech student in Artificial Intelligence & Data Science. Turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
               </p>
               <p className="text-base md:text-lg leading-relaxed text-muted-foreground pl-4">
