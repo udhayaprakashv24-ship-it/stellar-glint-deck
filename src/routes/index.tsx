@@ -104,11 +104,6 @@ function Portfolio() {
             <p className="mt-6 max-w-lg text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground md:text-base">
               Data Analytics <span className="text-primary">·</span> UI/UX Designer
             </p>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/80">
-              B.Tech student in Artificial Intelligence & Data Science.
-              Turning raw data into clear stories and crafting interfaces
-              that make those stories feel effortless.
-            </p>
           </div>
         </section>
 
@@ -118,18 +113,14 @@ function Portfolio() {
             <SectionLabel index="01" title="About Me" />
           </div>
           <div className="md:col-span-8">
-            <ul className="space-y-4">
-              {[
-                "B.Tech Artificial Intelligence and Data Science student",
-                "Passionate about Data Analytics and UI/UX Design",
-                "Skilled in Python, SQL, Excel, Power BI, Tableau, Data Visualization, Figma, Wireframing, and Prototyping",
-                "Seeking Data Analytics internship opportunities",
-              ].map((item) => (
-                <li key={item} className="flex gap-4 border-l-2 border-primary/60 pl-4 text-foreground/85">
-                  <span className="flex-1 text-base leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="space-y-6">
+              <p className="text-lg md:text-xl leading-relaxed text-foreground/90 border-l-2 border-primary/60 pl-4 font-light">
+                B.Tech student in Artificial Intelligence & Data Science. Turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
+              </p>
+              <p className="text-base md:text-lg leading-relaxed text-muted-foreground pl-4">
+                Passionate about Data Analytics and UI/UX Design, blending structured scientific inquiry with intuitive digital aesthetics. Skilled in Python, SQL, Excel, Power BI, Tableau, and Figma. I focus on bridging the gap between numbers and human experiences to build recruiter-friendly systems and high-impact designs.
+              </p>
+            </div>
           </div>
         </section>
 
