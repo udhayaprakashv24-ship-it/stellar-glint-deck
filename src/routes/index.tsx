@@ -104,9 +104,6 @@ function Portfolio() {
             <p className="mt-6 max-w-lg text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground md:text-base">
               Data Analytics <span className="text-primary">·</span> UI/UX Designer
             </p>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/80">
-              {/* Moved to About Me */}
-            </p>
           </div>
         </section>
 
