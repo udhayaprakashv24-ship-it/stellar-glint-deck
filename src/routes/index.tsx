@@ -66,7 +66,7 @@ function Portfolio() {
           <div className="flex items-center gap-3">
             <div className="h-2 w-2 rounded-full bg-primary shadow-[0_0_12px_var(--color-primary)]" />
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              Portfolio / 2026
+              {"\n"}
             </span>
           </div>
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
