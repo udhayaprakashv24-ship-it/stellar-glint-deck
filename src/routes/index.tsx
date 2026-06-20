@@ -78,19 +78,18 @@ function Portfolio() {
         <section className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12">
           <div className="relative md:col-span-5">
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/40 via-transparent to-transparent blur-2xl" aria-hidden />
-            <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-card)]">
+            <div className="relative">
               <img
                 src={portrait.url}
                 alt="Portrait of Udhaya Prakash V"
-                className="aspect-[4/5] w-full object-cover grayscale"
+                className="aspect-[4/5] w-full object-contain"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                <span>· 2026</span>
-                <span>Frame · 001</span>
-              </div>
+              <p className="absolute bottom-4 left-0 right-0 text-center font-display text-2xl uppercase tracking-[0.4em] text-foreground md:text-3xl">
+                Portfolio
+              </p>
             </div>
           </div>
+
 
           <div className="flex flex-col justify-center md:col-span-7">
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.4em] text-primary">
