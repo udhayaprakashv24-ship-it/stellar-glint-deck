@@ -108,11 +108,11 @@ function Portfolio() {
         </section>
 
         {/* About */}
-        <section className="mt-24">
-          <div className="mb-8">
+        <section className="mt-24 grid grid-cols-1 gap-8 md:grid-cols-12">
+          <div className="md:col-span-4">
             <SectionLabel index="01" title="About Me" />
           </div>
-          <div className="max-w-4xl">
+          <div className="md:col-span-8">
             <div className="space-y-6">
               <p className="text-xl md:text-2xl leading-relaxed text-foreground/90 border-l-2 border-primary/60 pl-4 font-light">
                 B.Tech student in Artificial Intelligence & Data Science. Turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
@@ -125,12 +125,12 @@ function Portfolio() {
         </section>
 
         {/* Core Skills */}
-        <section className="mt-24">
-          <div className="mb-8">
+        <section className="mt-24 grid grid-cols-1 gap-8 md:grid-cols-12">
+          <div className="md:col-span-4">
             <SectionLabel index="02" title="Core Skills" />
           </div>
-          <div>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+          <div className="md:col-span-8">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {skills.map(({ name, icon: Icon }) => (
                 <div
                   key={name}
@@ -145,11 +145,11 @@ function Portfolio() {
         </section>
 
         {/* Tools & Proficiency */}
-        <section className="mt-24">
-          <div className="mb-8">
+        <section className="mt-24 grid grid-cols-1 gap-8 md:grid-cols-12">
+          <div className="md:col-span-4">
             <SectionLabel index="03" title="Tools & Proficiency" />
           </div>
-          <div className="max-w-4xl space-y-5">
+          <div className="md:col-span-8 space-y-5">
             {proficiency.map(({ name, value }) => (
               <div key={name}>
                 <div className="mb-2 flex items-baseline justify-between">
@@ -168,12 +168,12 @@ function Portfolio() {
         </section>
 
         {/* Contact */}
-        <section className="mt-24">
-          <div className="mb-8">
+        <section className="mt-24 grid grid-cols-1 gap-8 md:grid-cols-12">
+          <div className="md:col-span-4">
             <SectionLabel index="04" title="Contact" />
           </div>
-          <div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+          <div className="md:col-span-8">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {contacts.map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
