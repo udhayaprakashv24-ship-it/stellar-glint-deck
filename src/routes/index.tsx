@@ -64,14 +64,24 @@ function Portfolio() {
         {/* Header */}
         <header className="mb-12 flex items-center justify-between border-b border-border/40 pb-6">
           <div className="flex items-center gap-3">
-            <div className="h-2 w-2 rounded-full bg-primary shadow-[0_0_12px_var(--color-primary)]" />
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              {"\n"}
+            <span className="font-mono text-xs uppercase tracking-[0.3em] text-foreground font-semibold">
+              UPV
             </span>
           </div>
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            {"\n"}
-          </span>
+          <div className="flex items-center gap-4">
+            {contacts.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel="noreferrer"
+                className="text-muted-foreground transition-colors hover:text-primary"
+                aria-label={label}
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
         </header>
 
         {/* Hero */}
