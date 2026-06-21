@@ -208,10 +208,6 @@ function Portfolio() {
             />
           </div>
         </section>
-      </div>
-    </main>
-  );
-}
 
         {/* Footer */}
         <footer className="mt-24 flex flex-col items-start justify-between gap-4 border-t border-border/40 pt-6 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground md:flex-row md:items-center">
