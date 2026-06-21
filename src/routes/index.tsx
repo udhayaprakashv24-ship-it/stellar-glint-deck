@@ -4,12 +4,6 @@ import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
   BarChart3, Database, Palette, Brain,
 } from "lucide-react";
-import {
-  SiPython, SiMysql, SiFigma, SiJupyter, SiPandas, SiNumpy,
-} from "react-icons/si";
-import { PiMicrosoftExcelLogoFill } from "react-icons/pi";
-// @ts-expect-error - JS component
-import LogoLoop from "@/components/LogoLoop.jsx";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,15 +31,6 @@ const skills = [
   { name: "Wireframing & Prototyping", icon: Palette },
   { name: "Problem Solving", icon: Brain },
   { name: "Continuous Learning", icon: Brain },
-];
-
-const proficiency = [
-  { name: "Python", value: 90 },
-  { name: "Excel", value: 90 },
-  { name: "SQL", value: 85 },
-  { name: "Power BI", value: 85 },
-  { name: "Tableau", value: 80 },
-  { name: "Figma", value: 75 },
 ];
 
 const contacts = [
@@ -158,54 +143,62 @@ function Portfolio() {
           </div>
         </section>
 
-        {/* Tools & Proficiency */}
+        {/* Experience */}
         <section className="mt-24">
           <div className="mb-8">
-            <SectionLabel title="Tools & Proficiency" />
+            <SectionLabel title="Experience" />
           </div>
-          <div className="max-w-4xl space-y-5">
-            {proficiency.map(({ name, value }) => (
-              <div key={name}>
-                <div className="mb-2 flex items-baseline justify-between">
-                  <span className="text-sm font-semibold uppercase tracking-wider text-foreground">{name}</span>
-                  <span className="font-mono text-sm text-primary">{value}%</span>
-                </div>
-                <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-                  <div
-                    className="h-full rounded-full bg-gradient-to-r from-primary to-primary/70 shadow-[0_0_12px_var(--color-primary)]"
-                    style={{ width: `${value}%` }}
-                  />
+          <div className="max-w-4xl">
+            <div className="relative border-l border-border/60 pl-8 ml-4 space-y-12">
+              {/* Timeline Node */}
+              <div className="relative">
+                {/* Bullet node on the left line */}
+                <span className="absolute -left-[37px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background border border-primary">
+                  <span className="h-2 w-2 rounded-full bg-primary" />
+                </span>
+                
+                {/* Content Card */}
+                <div className="group rounded-2xl border border-border bg-card/40 p-6 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)]">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="flex items-start gap-4">
+                      {/* Logo placeholder - stylized logo representing White & Box */}
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary font-display font-bold text-lg shadow-[0_0_15px_-5px_var(--color-primary)]">
+                        WB
+                      </div>
+                      <div>
+                        <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">UI/UX Design Intern</h3>
+                        <p className="text-sm font-semibold text-primary mt-1">
+                          White and Box – Tech Products & Services | Bengaluru, Karnataka
+                        </p>
+                        <p className="mt-1 font-mono text-xs text-muted-foreground">
+                          Dec 2025 – Jan 2026
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="mt-4 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
+                    White and Box is a technology company providing innovative digital products and services in the tech industry. During my internship as a UI/UX Design Intern, I contributed to designing user-centered digital experiences, improving interface usability, and creating visually engaging designs for web and mobile platforms.
+                  </p>
+
+                  <ul className="mt-6 grid grid-cols-1 gap-4 text-sm text-foreground/85">
+                    {[
+                      "Assisted in user research, wireframing, and prototype development for web and mobile applications.",
+                      "Created intuitive and visually appealing user interface designs using Figma and design systems.",
+                      "Collaborated with developers and product teams to ensure seamless implementation of design solutions.",
+                      "Improved user experience by analyzing user behavior and identifying usability issues.",
+                      "Supported the creation of responsive layouts, design documentation, and interactive prototypes.",
+                      "Followed industry-standard UI/UX principles, accessibility guidelines, and design best practices as part of the internship program."
+                    ].map((bullet, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                        <span className="leading-relaxed">{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Tech Stack Logo Loop */}
-        <section className="mt-24">
-          <div className="mb-8">
-            <SectionLabel title="Tech Stack" />
-          </div>
-          <div className="rounded-2xl border border-border bg-card/40 px-2 py-8 backdrop-blur">
-            <LogoLoop
-              logos={[
-                { node: <SiPython />, title: "Python", href: "https://python.org" },
-                { node: <PiMicrosoftExcelLogoFill />, title: "Excel", href: "https://microsoft.com/excel" },
-                { node: <SiMysql />, title: "SQL", href: "https://mysql.com" },
-                { node: <SiPandas />, title: "Pandas", href: "https://pandas.pydata.org" },
-                { node: <SiNumpy />, title: "NumPy", href: "https://numpy.org" },
-                { node: <SiJupyter />, title: "Jupyter", href: "https://jupyter.org" },
-                { node: <SiFigma />, title: "Figma", href: "https://figma.com" },
-              ]}
-              speed={80}
-              direction="left"
-              logoHeight={40}
-              gap={56}
-              scaleOnHover
-              fadeOut
-              fadeOutColor="hsl(var(--background))"
-              ariaLabel="Tech stack"
-            />
+            </div>
           </div>
         </section>
 
