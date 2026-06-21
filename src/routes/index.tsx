@@ -4,6 +4,12 @@ import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
   BarChart3, Database, Palette, Brain,
 } from "lucide-react";
+import {
+  SiPython, SiMysql, SiFigma, SiJupyter, SiPandas, SiNumpy,
+} from "react-icons/si";
+import { PiMicrosoftExcelLogoFill } from "react-icons/pi";
+// @ts-expect-error - JS component
+import LogoLoop from "@/components/LogoLoop.jsx";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -175,26 +181,31 @@ function Portfolio() {
           </div>
         </section>
 
-        {/* Contact */}
+        {/* Tech Stack Logo Loop */}
         <section className="mt-24">
           <div className="mb-8">
-            <SectionLabel title="Contact" />
+            <SectionLabel title="Tech Stack" />
           </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
-            {contacts.map(({ icon: Icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel="noreferrer"
-                className="group flex items-center gap-3 rounded-xl border border-border bg-card/60 px-4 py-3 backdrop-blur transition hover:border-primary/60 hover:bg-card"
-              >
-                <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/15 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
-                  <Icon className="h-4 w-4" />
-                </span>
-                <span className="truncate text-sm text-foreground/90">{label}</span>
-              </a>
-            ))}
+          <div className="rounded-2xl border border-border bg-card/40 px-2 py-8 backdrop-blur">
+            <LogoLoop
+              logos={[
+                { node: <SiPython />, title: "Python", href: "https://python.org" },
+                { node: <PiMicrosoftExcelLogoFill />, title: "Excel", href: "https://microsoft.com/excel" },
+                { node: <SiMysql />, title: "SQL", href: "https://mysql.com" },
+                { node: <SiPandas />, title: "Pandas", href: "https://pandas.pydata.org" },
+                { node: <SiNumpy />, title: "NumPy", href: "https://numpy.org" },
+                { node: <SiJupyter />, title: "Jupyter", href: "https://jupyter.org" },
+                { node: <SiFigma />, title: "Figma", href: "https://figma.com" },
+              ]}
+              speed={80}
+              direction="left"
+              logoHeight={40}
+              gap={56}
+              scaleOnHover
+              fadeOut
+              fadeOutColor="hsl(var(--background))"
+              ariaLabel="Tech stack"
+            />
           </div>
         </section>
 
