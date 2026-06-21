@@ -2,8 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import portrait from "@/assets/udhaya-portrait-nobg.png.asset.json";
 import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
-  BarChart3, Database, Palette, Brain,
+  BarChart3, Database, Palette, Brain, ExternalLink,
 } from "lucide-react";
+
+const projects = [
+  {
+    title: "Food Waste System",
+    description: "An AI-based smart system designed to reduce food waste by leveraging technology to monitor, predict, and optimize food usage across supply chains and households.",
+    tags: ["AI", "Smart System", "Sustainability"],
+    github: "https://github.com/udhayaprakashv24-ship-it/food-waste-sustem",
+  },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -138,6 +147,56 @@ function Portfolio() {
               >
                 <Icon className="h-4 w-4 shrink-0 text-primary" />
                 <span className="text-sm font-medium text-foreground/90">{name}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Projects */}
+        <section className="mt-24">
+          <div className="mb-8">
+            <SectionLabel title="Projects" />
+          </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <div
+                key={project.title}
+                className="group flex flex-col rounded-2xl border border-border bg-card/40 p-6 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)]"
+              >
+                {/* Top accent bar */}
+                <div className="mb-4 h-1 w-10 rounded-full bg-primary group-hover:w-16 transition-all duration-300" />
+
+                <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
+                  {project.description}
+                </p>
+
+                {/* Tags */}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-primary/30 bg-primary/10 px-3 py-0.5 font-mono text-xs text-primary"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* GitHub button */}
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 rounded-xl border border-border bg-background/60 px-4 py-2 text-sm font-medium text-foreground transition hover:border-primary/60 hover:text-primary hover:bg-primary/5 self-start"
+                >
+                  <Github className="h-4 w-4" />
+                  View on GitHub
+                  <ExternalLink className="h-3 w-3 opacity-60" />
+                </a>
               </div>
             ))}
           </div>
