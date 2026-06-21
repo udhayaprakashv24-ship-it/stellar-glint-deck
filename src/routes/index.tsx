@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import portrait from "@/assets/udhaya-portrait-nobg.png.asset.json";
 import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
-  BarChart3, Database, Palette, Brain, ExternalLink,
+  BarChart3, Database, Palette, Brain, Star, GitFork, ExternalLink,
 } from "lucide-react";
+import StarBorder from "@/components/StarBorder";
 
 const projects = [
   {
@@ -275,26 +276,60 @@ function Portfolio() {
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
                   {project.description}
                 </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-primary/30 bg-primary/10 px-3 py-0.5 font-mono text-xs text-primary"
+                {/* Tags + Star/Fork row */}
+                <div className="mt-4 flex items-center justify-between gap-2 flex-wrap">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-primary/30 bg-primary/10 px-3 py-0.5 font-mono text-xs text-primary"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  {/* Star & Fork */}
+                  <div className="flex items-center gap-3 text-muted-foreground">
+                    <a
+                      href={`${project.github}/stargazers`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1 text-xs hover:text-primary transition-colors"
+                      title="Star"
                     >
-                      {tag}
-                    </span>
-                  ))}
+                      <Star className="h-3.5 w-3.5" />
+                      <span>Star</span>
+                    </a>
+                    <a
+                      href={`${project.github}/fork`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1 text-xs hover:text-primary transition-colors"
+                      title="Fork"
+                    >
+                      <GitFork className="h-3.5 w-3.5" />
+                      <span>Fork</span>
+                    </a>
+                  </div>
                 </div>
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 rounded-xl border border-border bg-background/60 px-4 py-2 text-sm font-medium text-foreground transition hover:border-primary/60 hover:text-primary hover:bg-primary/5 self-start"
-                >
-                  <Github className="h-4 w-4" />
-                  View on GitHub
-                  <ExternalLink className="h-3 w-3 opacity-60" />
-                </a>
+
+                {/* View Project button */}
+                <div className="mt-6">
+                  <StarBorder
+                    as="a"
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    color="hsl(var(--primary))"
+                    speed="4s"
+                    className="w-full"
+                  >
+                    <span className="flex items-center justify-center gap-2 text-sm font-medium">
+                      <ExternalLink className="h-4 w-4" />
+                      View Project
+                    </span>
+                  </StarBorder>
+                </div>
               </div>
             ))}
           </div>
