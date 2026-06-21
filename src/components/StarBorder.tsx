@@ -1,3 +1,4 @@
+import React from 'react';
 import './StarBorder.css';
 
 type StarBorderProps<T extends React.ElementType = 'button'> = {
@@ -16,22 +17,29 @@ const StarBorder = <T extends React.ElementType = 'button'>({
   speed = '6s',
   thickness = 1,
   children,
+  style,
   ...rest
-}: StarBorderProps<T>) => {
+}: StarBorderProps<T> & { style?: React.CSSProperties }) => {
   const Component = (as ?? 'button') as React.ElementType;
   return (
     <Component
       className={`star-border-container ${className}`}
-      style={{ padding: `${thickness}px 0`, ...(rest as React.CSSProperties) }}
+      style={{ padding: `${thickness}px 0`, ...style }}
       {...rest}
     >
       <div
         className="border-gradient-bottom"
-        style={{ background: `radial-gradient(circle, ${color}, transparent 10%)`, animationDuration: speed }}
+        style={{
+          background: `radial-gradient(circle, ${color}, transparent 10%)`,
+          animationDuration: speed,
+        }}
       />
       <div
         className="border-gradient-top"
-        style={{ background: `radial-gradient(circle, ${color}, transparent 10%)`, animationDuration: speed }}
+        style={{
+          background: `radial-gradient(circle, ${color}, transparent 10%)`,
+          animationDuration: speed,
+        }}
       />
       <div className="inner-content">{children}</div>
     </Component>
