@@ -198,6 +198,52 @@ function Portfolio() {
                   </ul>
                 </div>
               </div>
+
+              {/* MAKE Labs */}
+              <div className="relative">
+                <span className="absolute -left-[37px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background border border-primary">
+                  <span className="h-2 w-2 rounded-full bg-primary" />
+                </span>
+
+                <div className="group rounded-2xl border border-border bg-card/40 p-6 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)]">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary font-display font-bold text-lg shadow-[0_0_15px_-5px_var(--color-primary)]">
+                        ML
+                      </div>
+                      <div>
+                        <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">UI/UX Design Intern</h3>
+                        <p className="text-sm font-semibold text-primary mt-1">
+                          MAKE Labs | Krishnagiri & Bengaluru
+                        </p>
+                        <p className="mt-1 font-mono text-xs text-muted-foreground">
+                          Add Your Internship Period
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="mt-4 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
+                    MAKE Labs is a technology startup specializing in web design, product development, research and development, robotics, and innovative technology solutions. I worked as a UI/UX Design Intern, contributing to the design and development of user-friendly digital experiences for web and mobile platforms.
+                  </p>
+
+                  <ul className="mt-6 grid grid-cols-1 gap-4 text-sm text-foreground/85">
+                    {[
+                      "Assisted in designing intuitive and visually appealing user interfaces for websites and digital products.",
+                      "Created wireframes, user flows, and interactive prototypes to enhance user experience and usability.",
+                      "Collaborated with development and design teams to ensure seamless implementation of design concepts.",
+                      "Conducted user research and analyzed feedback to improve interface functionality and accessibility.",
+                      "Designed responsive layouts, landing pages, and branding materials while maintaining visual consistency.",
+                      "Followed modern UI/UX design principles, design system standards, and user-centered design practices throughout the internship."
+                    ].map((bullet, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                        <span className="leading-relaxed">{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </section>
