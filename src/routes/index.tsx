@@ -4,12 +4,6 @@ import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
   BarChart3, Database, Palette, Brain,
 } from "lucide-react";
-import {
-  SiPython, SiMysql, SiFigma, SiJupyter, SiPandas, SiNumpy,
-} from "react-icons/si";
-import { PiMicrosoftExcelLogoFill } from "react-icons/pi";
-// @ts-expect-error - JS component
-import LogoLoop from "@/components/LogoLoop.jsx";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,15 +31,6 @@ const skills = [
   { name: "Wireframing & Prototyping", icon: Palette },
   { name: "Problem Solving", icon: Brain },
   { name: "Continuous Learning", icon: Brain },
-];
-
-const proficiency = [
-  { name: "Python", value: 90 },
-  { name: "Excel", value: 90 },
-  { name: "SQL", value: 85 },
-  { name: "Power BI", value: 85 },
-  { name: "Tableau", value: 80 },
-  { name: "Figma", value: 75 },
 ];
 
 const contacts = [
