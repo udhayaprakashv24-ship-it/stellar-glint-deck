@@ -13,6 +13,12 @@ const projects = [
     tags: ["AI", "Smart System", "Sustainability"],
     github: "https://github.com/udhayaprakashv24-ship-it/food-waste-sustem",
   },
+  {
+    title: "Bus Tracking Website",
+    description: "A web application to track bus routes and improve transportation visibility, providing real-time updates and better commuter experience.",
+    tags: ["Web App", "Tracking", "Transportation"],
+    github: "https://github.com/udhayaprakashv24-ship-it/bus-tracking-website",
+  },
 ];
 
 export const Route = createFileRoute("/")({
