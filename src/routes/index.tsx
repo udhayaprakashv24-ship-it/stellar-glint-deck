@@ -4,6 +4,13 @@ import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
   BarChart3, Database, Palette, Brain,
 } from "lucide-react";
+import {
+  SiPython, SiMysql, SiTableau, SiFigma, SiJupyter, SiPandas, SiNumpy,
+} from "react-icons/si";
+import { TbBrandPowerbi } from "react-icons/tb";
+import { PiMicrosoftExcelLogoFill } from "react-icons/pi";
+// @ts-expect-error - JS component
+import LogoLoop from "@/components/LogoLoop.jsx";
 
 export const Route = createFileRoute("/")({
   head: () => ({
