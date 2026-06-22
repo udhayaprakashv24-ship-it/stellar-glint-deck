@@ -27,6 +27,13 @@ const projects = [
     github: "https://github.com/udhayaprakashv24-ship-it/autofinder-app-development",
   },
   {
+    title: "UI/UX Figma Prototype",
+    description: "A modern, user-friendly UI/UX design prototype built in Figma. Focuses on smooth navigation, clean visual hierarchy, responsiveness, and intuitive user experience with interactive screens and real-world application flow.",
+    tags: ["Figma", "UI/UX", "Prototype"],
+    github: null,
+    figma: "https://www.figma.com/proto/QfNlTbOdDj5QzE6JlEKcU0",
+  },
+  {
     title: "Graphic Design — MAKE Labs",
     description: "Informational graphic design poster created during internship at MAKE Labs, showcasing design tools including Adobe Illustrator, Photoshop, Figma, CorelDraw, and Canva.",
     tags: ["Graphic Design", "MAKE Labs", "Figma"],
@@ -401,12 +408,12 @@ function Portfolio() {
                     )}
                   </div>
 
-                  {/* View Project button */}
-                  {project.github && (
+                  {/* View Project / View Prototype button */}
+                  {(project.github || ("figma" in project && project.figma)) && (
                     <div className="mt-6">
                       <StarBorder
                         as="a"
-                        href={project.github}
+                        href={project.github ?? ("figma" in project ? project.figma : "#")}
                         target="_blank"
                         rel="noreferrer"
                         color="hsl(var(--primary))"
@@ -415,7 +422,9 @@ function Portfolio() {
                       >
                         <span className="flex items-center justify-center gap-2 text-sm font-medium">
                           <ExternalLink className="h-4 w-4" />
-                          View Project
+                          {"figma" in project && project.figma && !project.github
+                            ? "View Prototype"
+                            : "View Project"}
                         </span>
                       </StarBorder>
                     </div>
