@@ -41,6 +41,13 @@ const projects = [
     figma: "https://www.figma.com/proto/4wn7n5nucSaWxamUsIT3NJ",
   },
   {
+    title: "Responsive UI/UX Design Prototype",
+    description: "A modern UI/UX design prototype built in Figma with a focus on clean, responsive layouts and structured design systems. Demonstrates a complete user flow with interactive screens suitable for real-world web or mobile applications, emphasising clarity, smooth navigation, consistent spacing, typography, and color harmony.",
+    tags: ["Figma", "UI/UX", "Responsive", "Prototype"],
+    github: null,
+    figma: "https://www.figma.com/proto/k8HPj9evRa9fU0RmNopkKt",
+  },
+  {
     title: "Graphic Design — MAKE Labs",
     description: "Informational graphic design poster created during internship at MAKE Labs, showcasing design tools including Adobe Illustrator, Photoshop, Figma, CorelDraw, and Canva.",
     tags: ["Graphic Design", "MAKE Labs", "Figma"],
