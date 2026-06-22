@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
 import portrait from "@/assets/udhaya-portrait-nobg.png.asset.json";
 import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
-  BarChart3, Database, Palette, Brain, Star, GitFork, ExternalLink,
+  BarChart3, Database, Palette, Brain, Star, GitFork, ExternalLink, X, ZoomIn,
 } from "lucide-react";
 import StarBorder from "@/components/StarBorder";
 
@@ -79,8 +80,43 @@ const contacts = [
 ];
 
 function Portfolio() {
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(null); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightbox]);
+
   return (
     <main className="min-h-screen w-full overflow-x-hidden">
+      {/* Lightbox overlay */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
+            onClick={() => setLightbox(null)}
+            aria-label="Close"
+          >
+            <X className="h-8 w-8" />
+          </button>
+          <img
+            src={lightbox.src}
+            alt={lightbox.alt}
+            className="max-h-[90vh] max-w-[90vw] rounded-xl object-contain shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
+
       {/* Ambient glow accents */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-primary/20 blur-[120px]" />
@@ -297,14 +333,24 @@ function Portfolio() {
               >
                 {/* Poster image */}
                 {"poster" in project && project.poster && (
-                  <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
+                  <button
+                    className="relative w-full overflow-hidden cursor-zoom-in focus:outline-none"
+                    style={{ aspectRatio: "16/9" }}
+                    onClick={() => setLightbox({ src: project.poster!, alt: `${project.title} poster` })}
+                    aria-label={`View ${project.title} poster fullscreen`}
+                  >
                     <img
                       src={project.poster}
                       alt={`${project.title} poster`}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  </div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="rounded-full bg-black/50 p-3 backdrop-blur-sm">
+                        <ZoomIn className="h-6 w-6 text-white" />
+                      </div>
+                    </div>
+                  </button>
                 )}
 
                 {/* Card body */}
