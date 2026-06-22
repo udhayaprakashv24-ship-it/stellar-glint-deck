@@ -25,6 +25,20 @@ const projects = [
     tags: ["App", "Automotive", "Search"],
     github: "https://github.com/udhayaprakashv24-ship-it/autofinder-app-development",
   },
+  {
+    title: "Graphic Design — MAKE Labs",
+    description: "Informational graphic design poster created during internship at MAKE Labs, showcasing design tools including Adobe Illustrator, Photoshop, Figma, CorelDraw, and Canva.",
+    tags: ["Graphic Design", "MAKE Labs", "Figma"],
+    github: null,
+    poster: "/posters/graphic-design-poster.jpg",
+  },
+  {
+    title: "Construction Ad Design",
+    description: "A professional advertisement design for a construction company, featuring bold typography, imagery, and layout crafted to communicate services effectively.",
+    tags: ["Ad Design", "Typography", "Branding"],
+    github: null,
+    poster: "/posters/construction-poster.jpg",
+  },
 ];
 
 export const Route = createFileRoute("/")({
@@ -279,68 +293,87 @@ function Portfolio() {
             {projects.map((project) => (
               <div
                 key={project.title}
-                className="group flex flex-col rounded-2xl border border-border bg-card/40 p-6 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)]"
+                className="group flex flex-col rounded-2xl border border-border bg-card/40 overflow-hidden backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)]"
               >
-                <div className="mb-4 h-1 w-10 rounded-full bg-primary group-hover:w-16 transition-all duration-300" />
-                <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
-                  {project.description}
-                </p>
-                {/* Tags + Star/Fork row */}
-                <div className="mt-4 flex items-center justify-between gap-2 flex-wrap">
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-primary/30 bg-primary/10 px-3 py-0.5 font-mono text-xs text-primary"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                {/* Poster image */}
+                {"poster" in project && project.poster && (
+                  <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
+                    <img
+                      src={project.poster}
+                      alt={`${project.title} poster`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   </div>
-                  {/* Star & Fork */}
-                  <div className="flex items-center gap-3 text-muted-foreground">
-                    <a
-                      href={`${project.github}/stargazers`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-1 text-xs hover:text-primary transition-colors"
-                      title="Star"
-                    >
-                      <Star className="h-3.5 w-3.5" />
-                      <span>Star</span>
-                    </a>
-                    <a
-                      href={`${project.github}/fork`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-1 text-xs hover:text-primary transition-colors"
-                      title="Fork"
-                    >
-                      <GitFork className="h-3.5 w-3.5" />
-                      <span>Fork</span>
-                    </a>
-                  </div>
-                </div>
+                )}
 
-                {/* View Project button */}
-                <div className="mt-6">
-                  <StarBorder
-                    as="a"
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    color="hsl(var(--primary))"
-                    speed="4s"
-                    className="w-full"
-                  >
-                    <span className="flex items-center justify-center gap-2 text-sm font-medium">
-                      <ExternalLink className="h-4 w-4" />
-                      View Project
-                    </span>
-                  </StarBorder>
+                {/* Card body */}
+                <div className="flex flex-col flex-1 p-6">
+                  <div className="mb-4 h-1 w-10 rounded-full bg-primary group-hover:w-16 transition-all duration-300" />
+                  <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
+                    {project.description}
+                  </p>
+
+                  {/* Tags + Star/Fork row */}
+                  <div className="mt-4 flex items-center justify-between gap-2 flex-wrap">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-primary/30 bg-primary/10 px-3 py-0.5 font-mono text-xs text-primary"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    {project.github && (
+                      <div className="flex items-center gap-3 text-muted-foreground">
+                        <a
+                          href={`${project.github}/stargazers`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-1 text-xs hover:text-primary transition-colors"
+                          title="Star"
+                        >
+                          <Star className="h-3.5 w-3.5" />
+                          <span>Star</span>
+                        </a>
+                        <a
+                          href={`${project.github}/fork`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-1 text-xs hover:text-primary transition-colors"
+                          title="Fork"
+                        >
+                          <GitFork className="h-3.5 w-3.5" />
+                          <span>Fork</span>
+                        </a>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* View Project button */}
+                  {project.github && (
+                    <div className="mt-6">
+                      <StarBorder
+                        as="a"
+                        href={project.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        color="hsl(var(--primary))"
+                        speed="4s"
+                        className="w-full"
+                      >
+                        <span className="flex items-center justify-center gap-2 text-sm font-medium">
+                          <ExternalLink className="h-4 w-4" />
+                          View Project
+                        </span>
+                      </StarBorder>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
