@@ -19,6 +19,12 @@ const projects = [
     tags: ["Web App", "Tracking", "Transportation"],
     github: "https://github.com/udhayaprakashv24-ship-it/bus-tracking-website",
   },
+  {
+    title: "AutoFinder App",
+    description: "A mobile/web application to help users find and discover automobiles, streamlining the vehicle search and discovery experience.",
+    tags: ["App", "Automotive", "Search"],
+    github: "https://github.com/udhayaprakashv24-ship-it/autofinder-app-development",
+  },
 ];
 
 export const Route = createFileRoute("/")({
