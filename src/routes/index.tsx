@@ -34,6 +34,13 @@ const projects = [
     figma: "https://www.figma.com/proto/4wn7n5nucSaWxamUsIT3NJ",
   },
   {
+    title: "Insurance Management Desktop App — UI/UX",
+    description: "A desktop UI/UX design prototype for an Insurance Management Application built in Figma. Features a dashboard-style interface for managing insurance policies, customer details, claims, and reports — with organised navigation, data visualisation sections, and consistent design elements optimised for professional desktop workflows.",
+    tags: ["Figma", "UI/UX", "Dashboard", "Desktop", "Prototype"],
+    github: null,
+    figma: "https://www.figma.com/proto/QfNlTbOdDj5QzE6JlEKcU0",
+  },
+  {
     title: "Responsive UI/UX Design Prototype",
     description: "A modern UI/UX design prototype built in Figma with a focus on clean, responsive layouts and structured design systems. Demonstrates a complete user flow with interactive screens suitable for real-world web or mobile applications, emphasising clarity, smooth navigation, consistent spacing, typography, and color harmony.",
     tags: ["Figma", "UI/UX", "Responsive", "Prototype"],
