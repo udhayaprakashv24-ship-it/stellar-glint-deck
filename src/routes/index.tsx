@@ -31,7 +31,7 @@ const projects = [
     description: "A modern, user-friendly UI/UX design prototype built in Figma. Focuses on smooth navigation, clean visual hierarchy, responsiveness, and intuitive user experience with interactive screens and real-world application flow.",
     tags: ["Figma", "UI/UX", "Prototype"],
     github: null,
-    figma: "https://www.figma.com/proto/QfNlTbOdDj5QzE6JlEKcU0",
+    figma: "https://www.figma.com/proto/4wn7n5nucSaWxamUsIT3NJ",
   },
   {
     title: "Graphic Design — MAKE Labs",
