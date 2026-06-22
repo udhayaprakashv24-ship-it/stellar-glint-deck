@@ -34,13 +34,6 @@ const projects = [
     figma: "https://www.figma.com/proto/4wn7n5nucSaWxamUsIT3NJ",
   },
   {
-    title: "Modern UI/UX Design Prototype",
-    description: "A modern UI/UX design prototype built in Figma following a user-centered approach. Features multiple interactive screens demonstrating real-world user flow for web or mobile concepts, with careful attention to layout, spacing, typography, color harmony, accessibility, and visual clarity.",
-    tags: ["Figma", "UI/UX", "Accessibility", "Prototype"],
-    github: null,
-    figma: "https://www.figma.com/proto/4wn7n5nucSaWxamUsIT3NJ",
-  },
-  {
     title: "Responsive UI/UX Design Prototype",
     description: "A modern UI/UX design prototype built in Figma with a focus on clean, responsive layouts and structured design systems. Demonstrates a complete user flow with interactive screens suitable for real-world web or mobile applications, emphasising clarity, smooth navigation, consistent spacing, typography, and color harmony.",
     tags: ["Figma", "UI/UX", "Responsive", "Prototype"],
