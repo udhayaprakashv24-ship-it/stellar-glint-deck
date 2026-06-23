@@ -547,6 +547,16 @@ function Portfolio() {
                   "/linkedin-posts/post-08.jpeg",
                   "/linkedin-posts/post-09.jpeg",
                   "/linkedin-posts/post-10.jpeg",
+                  "/linkedin-posts/post-11.jpeg",
+                  "/linkedin-posts/post-12.jpeg",
+                  "/linkedin-posts/post-13.jpeg",
+                  "/linkedin-posts/post-14.jpeg",
+                  "/linkedin-posts/post-15.jpeg",
+                  "/linkedin-posts/post-16.jpeg",
+                  "/linkedin-posts/post-17.jpeg",
+                  "/linkedin-posts/post-18.jpeg",
+                  "/linkedin-posts/post-19.jpeg",
+                  "/linkedin-posts/post-20.jpeg",
                 ].map((src, i) => (
                   <div
                     key={i}
