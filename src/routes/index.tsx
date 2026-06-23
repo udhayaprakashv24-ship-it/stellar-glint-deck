@@ -102,6 +102,20 @@ const contacts = [
 
 function Portfolio() {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactQuery, setContactQuery] = useState("");
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!contactEmail) return;
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
+    setContactEmail("");
+    setContactQuery("");
+  };
 
   useEffect(() => {
     if (!lightbox) return;
@@ -580,10 +594,154 @@ function Portfolio() {
           })()}
         </section>
 
+        {/* Contact */}
+        <section className="mt-24">
+          {/* Open for header */}
+          <div className="mb-16 max-w-2xl">
+            <p className="mb-3 font-mono text-xs tracking-[0.3em] text-sky-400/70 uppercase">— Let's Connect</p>
+            <h2 className="font-display text-5xl font-bold leading-tight text-foreground md:text-6xl lg:text-7xl">
+              I'm open for
+            </h2>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+              I appreciate your interest in connecting with me. I'm excited to explore new opportunities, receive feedback, collaborate on projects, and broaden my network.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              For any specific questions or comments, please don't hesitate to contact me directly at{" "}
+              <a href="mailto:udhayaprakashv.24@gmail.com" className="text-sky-400 hover:text-cyan-300 transition-colors duration-200 font-medium">
+                udhayaprakashv.24@gmail.com
+              </a>
+              . I strive to respond to all messages within 24 hours, although it may take a bit longer during busy periods.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              If you prefer social media, you can also find me on Instagram at{" "}
+              <a href="https://instagram.com/the_usos_boy" target="_blank" rel="noreferrer" className="text-sky-400 hover:text-cyan-300 transition-colors duration-200 font-medium">
+                @the_usos_boy
+              </a>
+              .
+            </p>
+          </div>
+
+          {/* Contact card */}
+          <div
+            className="w-full rounded-3xl p-8 md:p-12"
+            style={{
+              background: "rgba(8, 12, 28, 0.85)",
+              border: "1px solid rgba(56, 189, 248, 0.18)",
+              boxShadow: "0 0 60px -20px rgba(56, 189, 248, 0.15), 0 24px 80px rgba(0,0,0,0.6)",
+              backdropFilter: "blur(24px)",
+              WebkitBackdropFilter: "blur(24px)",
+            }}
+          >
+            {/* Card header */}
+            <div className="mb-8 text-center">
+              <h3 className="font-display text-3xl font-bold text-foreground md:text-4xl">
+                Keep the Connection
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">Sign up to get the latest news</p>
+            </div>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="mx-auto max-w-2xl">
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <input
+                  type="email"
+                  value={contactEmail}
+                  onChange={e => setContactEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  required
+                  className="flex-1 rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-200 focus:ring-1 focus:ring-sky-400/50"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(56,189,248,0.18)",
+                  }}
+                  onFocus={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.55)")}
+                  onBlur={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.18)")}
+                />
+                <input
+                  type="text"
+                  value={contactQuery}
+                  onChange={e => setContactQuery(e.target.value)}
+                  placeholder="Enter your query"
+                  className="flex-1 rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-200 focus:ring-1 focus:ring-sky-400/50"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(56,189,248,0.18)",
+                  }}
+                  onFocus={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.55)")}
+                  onBlur={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.18)")}
+                />
+              </div>
+
+              <div className="mt-5 flex justify-center">
+                <button
+                  type="submit"
+                  className="relative overflow-hidden rounded-full px-10 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95"
+                  style={{
+                    background: "rgba(8,12,28,0.9)",
+                    border: "1px solid rgba(56,189,248,0.55)",
+                    boxShadow: submitted
+                      ? "0 0 30px rgba(34,211,238,0.6)"
+                      : "0 0 18px rgba(56,189,248,0.25)",
+                  }}
+                >
+                  <span className="relative z-10">
+                    {submitted ? "✓ Message Sent!" : "Submit"}
+                  </span>
+                  <span
+                    className="absolute inset-0 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: "radial-gradient(circle at center, rgba(56,189,248,0.12) 0%, transparent 70%)" }}
+                  />
+                </button>
+              </div>
+            </form>
+
+            {/* Divider */}
+            <div className="mx-auto mt-10 max-w-2xl h-px" style={{ background: "linear-gradient(to right, transparent, rgba(56,189,248,0.25), transparent)" }} />
+
+            {/* Star rating */}
+            <div className="mt-8 flex flex-col items-center gap-4">
+              <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
+                Rate your experience
+              </p>
+              <div className="flex items-center gap-2">
+                {[1,2,3,4,5].map(star => (
+                  <button
+                    key={star}
+                    type="button"
+                    onClick={() => setRating(star)}
+                    onMouseEnter={() => setHoverRating(star)}
+                    onMouseLeave={() => setHoverRating(0)}
+                    className="transition-transform duration-150 hover:scale-125 active:scale-95"
+                    aria-label={`Rate ${star} stars`}
+                  >
+                    <svg
+                      width="28" height="28" viewBox="0 0 24 24" fill="none"
+                      stroke={(hoverRating || rating) >= star ? "#38bdf8" : "rgba(56,189,248,0.35)"}
+                      strokeWidth="1.5"
+                      style={{
+                        filter: (hoverRating || rating) >= star ? "drop-shadow(0 0 6px rgba(56,189,248,0.7))" : "none",
+                        fill: (hoverRating || rating) >= star ? "rgba(56,189,248,0.15)" : "none",
+                        transition: "all 0.15s ease",
+                      }}
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  </button>
+                ))}
+              </div>
+              {rating > 0 && (
+                <p className="font-mono text-[11px] text-sky-400/70 tracking-widest">
+                  {["", "Poor", "Fair", "Good", "Great", "Excellent!"][rating]}
+                </p>
+              )}
+            </div>
+          </div>
+        </section>
+
         {/* Footer */}
-        <footer className="mt-24 flex flex-col items-start justify-between gap-4 border-t border-border/40 pt-6 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground md:flex-row md:items-center">
-          <span>© 2026 Udhaya Prakash V</span>
-          <span>Designed & Built with intent</span>
+        <footer className="mt-16 flex flex-col items-center justify-center gap-2 border-t border-border/30 pt-8 pb-6 text-center font-mono text-xs text-muted-foreground/60">
+          <span className="tracking-widest uppercase">Always be caffeinated!</span>
+          <span className="tracking-[0.2em]">© 2026 Udhaya Prakash V (usos_boy)</span>
         </footer>
       </div>
     </main>
