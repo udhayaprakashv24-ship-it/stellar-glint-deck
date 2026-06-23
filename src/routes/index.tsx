@@ -493,6 +493,93 @@ function Portfolio() {
           </div>
         </section>
 
+        {/* Connecting, Learning, and Growing Together */}
+        <section className="mt-24">
+          <div className="mb-8">
+            <SectionLabel title="Connecting, Learning & Growing" />
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              Explore my insights and experiences from various industry events, certifications, workshops, hackathons, and professional meetups where I share key learnings, valuable connections, achievements, and moments that have shaped my journey in Data Analytics, AI, and UI/UX Design.
+            </p>
+          </div>
+
+          {/* Glassmorphism fixed-frame feed */}
+          <div
+            className="linkedin-feed-frame relative mx-auto w-full max-w-sm overflow-hidden rounded-[20px] transition-all duration-300"
+            style={{
+              height: "700px",
+              background: "rgba(10, 10, 20, 0.72)",
+              border: "1px solid rgba(56, 189, 248, 0.35)",
+              boxShadow: "0 0 32px -8px rgba(56, 189, 248, 0.25), 0 8px 40px rgba(0,0,0,0.6)",
+              backdropFilter: "blur(18px)",
+              WebkitBackdropFilter: "blur(18px)",
+            }}
+          >
+            {/* Top bar chrome */}
+            <div
+              className="flex items-center gap-2 border-b px-4 py-3"
+              style={{ borderColor: "rgba(56,189,248,0.18)", background: "rgba(15,15,30,0.8)" }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#0A66C2" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              <span className="font-mono text-[11px] tracking-widest text-sky-400/80 uppercase">LinkedIn Feed</span>
+              <div className="ml-auto flex gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
+                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/60" />
+                <span className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
+              </div>
+            </div>
+
+            {/* Scrollable post feed */}
+            <div
+              className="linkedin-feed-scroll h-[calc(100%-44px)] overflow-y-auto"
+              style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(56,189,248,0.3) transparent" }}
+            >
+              <div className="flex flex-col gap-4 p-4">
+                {[
+                  "/linkedin-posts/post-01.jpeg",
+                  "/linkedin-posts/post-02.jpeg",
+                  "/linkedin-posts/post-03.jpeg",
+                  "/linkedin-posts/post-04.jpeg",
+                  "/linkedin-posts/post-05.jpeg",
+                  "/linkedin-posts/post-06.jpeg",
+                  "/linkedin-posts/post-07.jpeg",
+                  "/linkedin-posts/post-08.jpeg",
+                  "/linkedin-posts/post-09.jpeg",
+                  "/linkedin-posts/post-10.jpeg",
+                ].map((src, i) => (
+                  <div
+                    key={i}
+                    className="linkedin-post-card group overflow-hidden rounded-2xl transition-all duration-300"
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      animation: `fadeSlideIn 0.5s ease both`,
+                      animationDelay: `${i * 60}ms`,
+                    }}
+                  >
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={src}
+                        alt={`LinkedIn post ${i + 1}`}
+                        className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom fade */}
+            <div
+              className="pointer-events-none absolute bottom-0 left-0 right-0 h-16"
+              style={{ background: "linear-gradient(to top, rgba(10,10,20,0.9) 0%, transparent 100%)" }}
+            />
+          </div>
+        </section>
+
         {/* Footer */}
         <footer className="mt-24 flex flex-col items-start justify-between gap-4 border-t border-border/40 pt-6 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground md:flex-row md:items-center">
           <span>© 2026 Udhaya Prakash V</span>
