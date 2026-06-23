@@ -741,7 +741,7 @@ function Portfolio() {
         {/* Footer */}
         <footer className="mt-16 flex flex-col items-center justify-center gap-2 border-t border-border/30 pt-8 pb-6 text-center font-mono text-xs text-muted-foreground/60">
           <span className="tracking-widest uppercase">Always be caffeinated!</span>
-          <span className="tracking-[0.2em]">© 2026 Udhaya Prakash V (usos_boy)</span>
+          <span className="tracking-[0.2em]">© Udhaya Prakash V (usos_boy)</span>
         </footer>
       </div>
     </main>
