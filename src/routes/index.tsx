@@ -502,92 +502,78 @@ function Portfolio() {
             </p>
           </div>
 
-          {/* Glassmorphism fixed-frame feed */}
-          <div
-            className="linkedin-feed-frame relative mx-auto w-full max-w-sm overflow-hidden rounded-[20px] transition-all duration-300"
-            style={{
-              height: "700px",
-              background: "rgba(10, 10, 20, 0.72)",
-              border: "1px solid rgba(56, 189, 248, 0.35)",
-              boxShadow: "0 0 32px -8px rgba(56, 189, 248, 0.25), 0 8px 40px rgba(0,0,0,0.6)",
-              backdropFilter: "blur(18px)",
-              WebkitBackdropFilter: "blur(18px)",
-            }}
-          >
-            {/* Top bar chrome */}
-            <div
-              className="flex items-center gap-2 border-b px-4 py-3"
-              style={{ borderColor: "rgba(56,189,248,0.18)", background: "rgba(15,15,30,0.8)" }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#0A66C2" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-              <span className="font-mono text-[11px] tracking-widest text-sky-400/80 uppercase">LinkedIn Feed</span>
-              <div className="ml-auto flex gap-1.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
-                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/60" />
-                <span className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
-              </div>
-            </div>
+          {/* Highlights Wall — masonry infinite-scroll */}
+          {(() => {
+            const col1 = [1,4,7,10,13,16,19].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
+            const col2 = [2,5,8,11,14,17,20].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
+            const col3 = [3,6,9,12,15,18].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
 
-            {/* Scrollable post feed */}
-            <div
-              className="linkedin-feed-scroll h-[calc(100%-44px)] overflow-y-auto"
-              style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(56,189,248,0.3) transparent" }}
-            >
-              <div className="flex flex-col gap-4 p-4">
-                {[
-                  "/linkedin-posts/post-01.jpeg",
-                  "/linkedin-posts/post-02.jpeg",
-                  "/linkedin-posts/post-03.jpeg",
-                  "/linkedin-posts/post-04.jpeg",
-                  "/linkedin-posts/post-05.jpeg",
-                  "/linkedin-posts/post-06.jpeg",
-                  "/linkedin-posts/post-07.jpeg",
-                  "/linkedin-posts/post-08.jpeg",
-                  "/linkedin-posts/post-09.jpeg",
-                  "/linkedin-posts/post-10.jpeg",
-                  "/linkedin-posts/post-11.jpeg",
-                  "/linkedin-posts/post-12.jpeg",
-                  "/linkedin-posts/post-13.jpeg",
-                  "/linkedin-posts/post-14.jpeg",
-                  "/linkedin-posts/post-15.jpeg",
-                  "/linkedin-posts/post-16.jpeg",
-                  "/linkedin-posts/post-17.jpeg",
-                  "/linkedin-posts/post-18.jpeg",
-                  "/linkedin-posts/post-19.jpeg",
-                  "/linkedin-posts/post-20.jpeg",
-                ].map((src, i) => (
-                  <div
-                    key={i}
-                    className="linkedin-post-card group overflow-hidden rounded-2xl transition-all duration-300"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      animation: `fadeSlideIn 0.5s ease both`,
-                      animationDelay: `${i * 60}ms`,
-                    }}
-                  >
-                    <div className="relative overflow-hidden">
+            const Column = ({ posts, duration, delay = "0s" }: { posts: string[]; duration: string; delay?: string }) => (
+              <div className="flex-1 min-w-0 overflow-hidden" style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+                <div
+                  className="linkedin-wall-col flex flex-col gap-3"
+                  style={{ animation: `wallScroll ${duration} linear ${delay} infinite` }}
+                >
+                  {[...posts, ...posts].map((src, i) => (
+                    <div
+                      key={i}
+                      className="linkedin-post-card group relative overflow-hidden rounded-xl transition-all duration-300"
+                      style={{ border: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.03)" }}
+                    >
                       <img
                         src={src}
-                        alt={`LinkedIn post ${i + 1}`}
-                        className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        alt={`LinkedIn post`}
+                        className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            );
 
-            {/* Bottom fade */}
-            <div
-              className="pointer-events-none absolute bottom-0 left-0 right-0 h-16"
-              style={{ background: "linear-gradient(to top, rgba(10,10,20,0.9) 0%, transparent 100%)" }}
-            />
-          </div>
+            return (
+              <div
+                className="linkedin-feed-frame relative w-full overflow-hidden rounded-[20px] transition-all duration-300"
+                style={{
+                  height: "680px",
+                  background: "rgba(8, 8, 18, 0.80)",
+                  border: "1px solid rgba(56, 189, 248, 0.35)",
+                  boxShadow: "0 0 40px -10px rgba(56, 189, 248, 0.3), inset 0 0 80px rgba(0,0,0,0.4), 0 12px 50px rgba(0,0,0,0.7)",
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                }}
+              >
+                {/* Top chrome bar */}
+                <div
+                  className="relative z-10 flex items-center gap-2 border-b px-5 py-3"
+                  style={{ borderColor: "rgba(56,189,248,0.15)", background: "rgba(10,10,25,0.9)" }}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="#0A66C2" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                  <span className="font-mono text-[11px] tracking-widest text-sky-400/80 uppercase">Highlights Wall</span>
+                  <div className="ml-auto flex gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-red-500/50" />
+                    <span className="h-2 w-2 rounded-full bg-yellow-400/50" />
+                    <span className="h-2 w-2 rounded-full bg-green-500/50" />
+                  </div>
+                </div>
+
+                {/* 3-column masonry wall */}
+                <div className="flex gap-3 p-3 h-[calc(100%-44px)] overflow-hidden">
+                  <Column posts={col1} duration="45s" delay="0s" />
+                  <Column posts={col2} duration="55s" delay="-18s" />
+                  <Column posts={col3} duration="40s" delay="-8s" />
+                </div>
+
+                {/* Top & bottom atmospheric fades */}
+                <div className="pointer-events-none absolute top-[44px] left-0 right-0 h-12 z-10" style={{ background: "linear-gradient(to bottom, rgba(8,8,18,0.85) 0%, transparent 100%)" }} />
+                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 z-10" style={{ background: "linear-gradient(to top, rgba(8,8,18,0.85) 0%, transparent 100%)" }} />
+              </div>
+            );
+          })()}
         </section>
 
         {/* Footer */}

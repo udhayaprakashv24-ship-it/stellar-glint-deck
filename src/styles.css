@@ -73,6 +73,19 @@
   }
 }
 
+@keyframes wallScroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.linkedin-wall-col {
+  will-change: transform;
+}
+
+.linkedin-wall-col:hover {
+  animation-play-state: paused !important;
+}
+
 .linkedin-feed-frame:hover {
   border-color: rgba(56, 189, 248, 0.65) !important;
   box-shadow: 0 0 48px -8px rgba(56, 189, 248, 0.45), 0 8px 40px rgba(0,0,0,0.6) !important;
