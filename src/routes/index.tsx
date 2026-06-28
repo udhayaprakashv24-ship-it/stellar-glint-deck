@@ -202,7 +202,10 @@ function Portfolio() {
               </h1>
               <div className="mt-5 h-px w-20 bg-primary" />
               <p className="mt-5 text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground md:text-base">
-                Data Analytics <span className="text-primary">·</span> UI/UX Designer
+                Data Analytics
+              </p>
+              <p className="mt-1 text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground md:text-base">
+                UI/UX Designer
               </p>
             </div>
           </div>
