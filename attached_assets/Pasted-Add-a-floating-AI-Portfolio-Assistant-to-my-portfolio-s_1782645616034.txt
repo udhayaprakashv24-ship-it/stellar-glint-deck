@@ -1,0 +1,44 @@
+Add a floating AI Portfolio Assistant to my portfolio, similar to a modern SaaS chatbot (like ChatGPT/Intercom), positioned in the bottom-right corner.
+Design Requirements:
+Dark glassmorphism UI matching my portfolio theme.
+Rounded corners (20px), subtle border, soft blue glow, and backdrop blur.
+Floating AI robot icon button that expands into a chat window.
+Responsive for desktop, tablet, and mobile.
+Smooth open/close animations with fade and scale effects.
+Sticky position so it remains visible while scrolling.
+Modern typography with high contrast.
+Header
+🤖 AI Portfolio Assistant
+Subtitle: "Ask me about Udhaya Prakash"
+Close (×) button in the top-right.
+Welcome Message "Hi! I'm Udhaya Prakash's AI Assistant. I can answer questions about my Data Analytics skills, UI/UX Design experience, projects, certifications, education, achievements, resume, and career goals. What would you like to know?"
+Input Placeholder "Ask me about Udhaya Prakash..."
+Capabilities The AI assistant should answer questions only using my portfolio data, including:
+About Me
+Data Analytics skills (Python, SQL, Power BI, Excel, Tableau, Statistics)
+UI/UX Design skills (Figma, Wireframing, Prototyping, Design Systems)
+Projects
+Certifications
+Education
+Internship experience
+Resume
+Contact information
+Career goals
+Social links (LinkedIn, GitHub, Portfolio)
+If a question is outside my portfolio, politely reply: "I can only answer questions related to Udhaya Prakash's portfolio, skills, projects, and experience."
+Suggested Questions
+Tell me about yourself
+Show your projects
+What are your Data Analytics skills?
+What UI/UX tools do you use?
+Show your certifications
+Download your resume
+How can I contact you?
+Technical Requirements
+Use React + TypeScript + Tailwind CSS.
+Store portfolio knowledge in structured JSON or Markdown.
+Integrate with an AI API (OpenAI/Gemini) using Retrieval-Augmented Generation (RAG) so responses are grounded in my portfolio content.
+Maintain chat history during the session.
+Add typing animation, auto-scroll, timestamps, Enter-to-send, loading indicator, and markdown support.
+Match the existing futuristic dark theme with electric blue and neon cyan accents.
+Ensure the chatbot is fast, accessible, and production-ready.

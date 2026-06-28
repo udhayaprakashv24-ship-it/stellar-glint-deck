@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import StarBorder from "@/components/StarBorder";
 import RotatingText from "@/components/RotatingText";
+import AIChat from "@/components/AIChat";
 
 const projects = [
   {
@@ -596,7 +597,6 @@ function Portfolio() {
         <section className="mt-24">
           {/* Open for header */}
           <div className="mb-16 max-w-2xl">
-            <p className="mb-3 font-mono text-xs tracking-[0.3em] text-sky-400/70 uppercase">— Let's Connect</p>
             <h2 className="font-display text-5xl font-bold leading-tight text-foreground md:text-6xl lg:text-7xl flex flex-wrap items-center gap-x-4 gap-y-2">
               I'm open for
               <RotatingText
@@ -756,6 +756,7 @@ function Portfolio() {
           <span className="tracking-[0.2em]">© Udhaya Prakash V (usos_boy)</span>
         </footer>
       </div>
+      <AIChat />
     </main>
   );
 }
