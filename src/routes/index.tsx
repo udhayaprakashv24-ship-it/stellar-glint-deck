@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-const portrait = { url: "" };
+const portrait = { url: "/udhaya-portrait-nobg.png" };
 import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
   BarChart3, Database, Palette, Brain, Star, GitFork, ExternalLink, X, ZoomIn,
