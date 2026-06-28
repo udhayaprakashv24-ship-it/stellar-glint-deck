@@ -180,31 +180,27 @@ function Portfolio() {
         </header>
 
         {/* Hero */}
-        <section className={portrait.url ? "grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12 items-center" : "flex flex-col items-center text-center py-16"}>
+        <section className={portrait.url ? "grid grid-cols-1 md:grid-cols-12 items-end gap-0" : "flex flex-col items-center text-center py-16"}>
           {portrait.url && (
-            <div className="relative md:col-span-6">
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/40 via-transparent to-transparent blur-2xl" aria-hidden />
-              <div className="relative">
-                <img
-                  src={portrait.url}
-                  alt="Portrait of Udhaya Prakash V"
-                  className="aspect-[4/5] w-full object-contain scale-105 transition-transform duration-500 hover:scale-110"
-                />
-                <p className="absolute bottom-4 left-0 right-0 text-center font-display text-2xl uppercase tracking-[0.8em] pl-[0.8em] text-foreground md:text-3xl">
-                  PORTFOLIO
-                </p>
-              </div>
+            <div className="relative md:col-span-5 flex items-end justify-center">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-primary/20 blur-3xl" aria-hidden />
+              <img
+                src={portrait.url}
+                alt="Portrait of Udhaya Prakash V"
+                className="relative w-full max-w-xs md:max-w-sm object-contain object-bottom transition-transform duration-500 hover:scale-105"
+                style={{ maxHeight: "420px" }}
+              />
             </div>
           )}
 
-          <div className={`flex flex-col justify-center ${portrait.url ? "md:col-span-6" : "items-center"}`}>
-            <h1 className="font-display text-6xl leading-[0.95] tracking-tight text-foreground md:text-8xl">
+          <div className={`flex flex-col justify-center pb-10 ${portrait.url ? "md:col-span-7 md:pl-8" : "items-center"}`}>
+            <h1 className="font-display text-5xl leading-[0.95] tracking-tight text-foreground md:text-7xl lg:text-8xl">
               UDHAYA
               <br />
               PRAKASH <span className="text-primary">V</span>
             </h1>
-            <div className={`mt-6 h-px w-24 bg-primary ${portrait.url ? "" : "mx-auto"}`} />
-            <p className="mt-6 max-w-lg text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground md:text-base">
+            <div className={`mt-5 h-px w-20 bg-primary ${portrait.url ? "" : "mx-auto"}`} />
+            <p className="mt-5 text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground md:text-base">
               Data Analytics <span className="text-primary">·</span> UI/UX Designer
             </p>
           </div>
