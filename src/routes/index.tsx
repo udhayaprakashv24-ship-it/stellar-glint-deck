@@ -276,17 +276,18 @@ function Portfolio() {
                 </span>
                 
                 {/* Content Card */}
-                <div className="group rounded-2xl border border-border bg-card/40 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] flex flex-col sm:flex-row overflow-hidden">
-                  {/* Logo — left column */}
-                  <div className="flex shrink-0 items-center justify-center bg-white sm:w-36 py-6 px-4">
+                <div className="group rounded-2xl border border-border bg-card/40 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] p-6">
+                  <div className="flex items-start gap-5">
+                  {/* Logo — small box on left */}
+                  <div className="shrink-0 flex items-center justify-center rounded-xl bg-white border border-border w-16 h-16 p-1.5">
                     <img
                       src="/whiteandbox-logo.jpg"
                       alt="White and Box logo"
-                      className="w-20 h-20 object-contain"
+                      className="w-full h-full object-contain"
                     />
                   </div>
-                  {/* Content — right column */}
-                  <div className="flex-1 p-6">
+                  {/* Content — right side */}
+                  <div className="flex-1">
                     <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">UI/UX Design Intern</h3>
                     <p className="text-sm font-semibold text-primary mt-1">
                       White and Box – Tech Products & Services | Bengaluru, Karnataka
@@ -312,6 +313,7 @@ function Portfolio() {
                         </li>
                       ))}
                     </ul>
+                  </div>
                   </div>
                 </div>
               </div>
