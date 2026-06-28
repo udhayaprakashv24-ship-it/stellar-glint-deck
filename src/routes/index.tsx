@@ -276,44 +276,43 @@ function Portfolio() {
                 </span>
                 
                 {/* Content Card */}
-                <div className="group rounded-2xl border border-border bg-card/40 p-6 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)]">
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                    <div className="flex items-start gap-4">
-                      {/* Logo placeholder - stylized logo representing White & Box */}
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary font-display font-bold text-lg shadow-[0_0_15px_-5px_var(--color-primary)]">
-                        WB
-                      </div>
-                      <div>
-                        <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">UI/UX Design Intern</h3>
-                        <p className="text-sm font-semibold text-primary mt-1">
-                          White and Box – Tech Products & Services | Bengaluru, Karnataka
-                        </p>
-                        <p className="mt-1 font-mono text-xs text-muted-foreground">
-                          Dec 2025 – Jan 2026
-                        </p>
-                      </div>
-                    </div>
+                <div className="group rounded-2xl border border-border bg-card/40 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] flex flex-col sm:flex-row overflow-hidden">
+                  {/* Logo — left column */}
+                  <div className="flex shrink-0 items-center justify-center bg-white sm:w-36 py-6 px-4">
+                    <img
+                      src="/whiteandbox-logo.jpg"
+                      alt="White and Box logo"
+                      className="w-20 h-20 object-contain"
+                    />
                   </div>
-
-                  <p className="mt-4 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
-                    White and Box is a technology company providing innovative digital products and services in the tech industry. During my internship as a UI/UX Design Intern, I contributed to designing user-centered digital experiences, improving interface usability, and creating visually engaging designs for web and mobile platforms.
-                  </p>
-
-                  <ul className="mt-6 grid grid-cols-1 gap-4 text-sm text-foreground/85">
-                    {[
-                      "Assisted in user research, wireframing, and prototype development for web and mobile applications.",
-                      "Created intuitive and visually appealing user interface designs using Figma and design systems.",
-                      "Collaborated with developers and product teams to ensure seamless implementation of design solutions.",
-                      "Improved user experience by analyzing user behavior and identifying usability issues.",
-                      "Supported the creation of responsive layouts, design documentation, and interactive prototypes.",
-                      "Followed industry-standard UI/UX principles, accessibility guidelines, and design best practices as part of the internship program."
-                    ].map((bullet, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                        <span className="leading-relaxed">{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Content — right column */}
+                  <div className="flex-1 p-6">
+                    <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">UI/UX Design Intern</h3>
+                    <p className="text-sm font-semibold text-primary mt-1">
+                      White and Box – Tech Products & Services | Bengaluru, Karnataka
+                    </p>
+                    <p className="mt-1 font-mono text-xs text-muted-foreground">
+                      Dec 2025 – Jan 2026
+                    </p>
+                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
+                      White and Box is a technology company providing innovative digital products and services in the tech industry. During my internship as a UI/UX Design Intern, I contributed to designing user-centered digital experiences, improving interface usability, and creating visually engaging designs for web and mobile platforms.
+                    </p>
+                    <ul className="mt-6 grid grid-cols-1 gap-3 text-sm text-foreground/85">
+                      {[
+                        "Assisted in user research, wireframing, and prototype development for web and mobile applications.",
+                        "Created intuitive and visually appealing user interface designs using Figma and design systems.",
+                        "Collaborated with developers and product teams to ensure seamless implementation of design solutions.",
+                        "Improved user experience by analyzing user behavior and identifying usability issues.",
+                        "Supported the creation of responsive layouts, design documentation, and interactive prototypes.",
+                        "Followed industry-standard UI/UX principles, accessibility guidelines, and design best practices as part of the internship program."
+                      ].map((bullet, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                          <span className="leading-relaxed">{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
 
