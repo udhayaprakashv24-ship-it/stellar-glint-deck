@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import portrait from "@/assets/udhaya-portrait-nobg.png.asset.json";
+const portrait = { url: "" };
 import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
   BarChart3, Database, Palette, Brain, Star, GitFork, ExternalLink, X, ZoomIn,
@@ -188,11 +188,17 @@ function Portfolio() {
           <div className="relative md:col-span-6">
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/40 via-transparent to-transparent blur-2xl" aria-hidden />
             <div className="relative">
-              <img
-                src={portrait.url}
-                alt="Portrait of Udhaya Prakash V"
-                className="aspect-[4/5] w-full object-contain scale-105 transition-transform duration-500 hover:scale-110"
-              />
+              {portrait.url ? (
+                <img
+                  src={portrait.url}
+                  alt="Portrait of Udhaya Prakash V"
+                  className="aspect-[4/5] w-full object-contain scale-105 transition-transform duration-500 hover:scale-110"
+                />
+              ) : (
+                <div className="aspect-[4/5] w-full flex items-center justify-center rounded-2xl border border-primary/20 bg-primary/5">
+                  <span className="font-display text-6xl text-primary/40 select-none">UPV</span>
+                </div>
+              )}
               <p className="absolute bottom-4 left-0 right-0 text-center font-display text-2xl uppercase tracking-[0.8em] pl-[0.8em] text-foreground md:text-3xl">
                 PORTFOLIO
               </p>
