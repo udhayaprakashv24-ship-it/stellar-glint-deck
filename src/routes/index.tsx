@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { submitContact } from "../fns/contact";
 const portrait = { url: "/udhaya-portrait-nobg.png" };
 import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
@@ -108,15 +109,45 @@ function Portfolio() {
   const [contactQuery, setContactQuery] = useState("");
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [formError, setFormError] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateEmail = (email: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!contactEmail) return;
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setContactEmail("");
-    setContactQuery("");
+    setFormError(null);
+
+    if (!contactEmail.trim()) {
+      setFormError("Email address is required.");
+      return;
+    }
+    if (!validateEmail(contactEmail)) {
+      setFormError("Please enter a valid email address.");
+      return;
+    }
+    if (!contactQuery.trim()) {
+      setFormError("Query is required.");
+      return;
+    }
+    if (contactQuery.trim().length < 5) {
+      setFormError("Query must be at least 5 characters.");
+      return;
+    }
+
+    setFormStatus("submitting");
+    try {
+      await submitContact({ data: { email: contactEmail.trim(), query: contactQuery.trim() } });
+      setFormStatus("success");
+      setContactEmail("");
+      setContactQuery("");
+    } catch (err: unknown) {
+      setFormStatus("error");
+      const msg = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      setFormError(msg.includes("Too many") ? msg : "Submission failed. Please try again.");
+    }
   };
 
   useEffect(() => {
@@ -653,51 +684,131 @@ function Portfolio() {
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="mx-auto max-w-2xl">
+            <form ref={formRef} onSubmit={handleSubmit} className="mx-auto max-w-2xl" noValidate>
+
+              {/* Success notification */}
+              {formStatus === "success" && (
+                <div
+                  className="mb-5 flex items-start gap-3 rounded-xl px-5 py-4 text-sm"
+                  style={{
+                    background: "rgba(16,185,129,0.1)",
+                    border: "1px solid rgba(16,185,129,0.35)",
+                    color: "#6ee7b7",
+                  }}
+                  role="alert"
+                >
+                  <span className="mt-0.5 shrink-0 text-base">✅</span>
+                  <span>
+                    <strong className="block font-semibold text-emerald-400">Thank you for reaching out!</strong>
+                    Your message has been received successfully. I'll get back to you within 24 hours.
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setFormStatus("idle")}
+                    className="ml-auto shrink-0 opacity-50 hover:opacity-100 transition-opacity"
+                    aria-label="Dismiss"
+                  >
+                    <X size={14} />
+                  </button>
+                </div>
+              )}
+
+              {/* Error notification */}
+              {(formStatus === "error" || formError) && formStatus !== "success" && (
+                <div
+                  className="mb-5 flex items-start gap-3 rounded-xl px-5 py-4 text-sm"
+                  style={{
+                    background: "rgba(239,68,68,0.08)",
+                    border: "1px solid rgba(239,68,68,0.3)",
+                    color: "#fca5a5",
+                  }}
+                  role="alert"
+                >
+                  <span className="mt-0.5 shrink-0">⚠️</span>
+                  <span>{formError ?? "Something went wrong. Please try again."}</span>
+                  <button
+                    type="button"
+                    onClick={() => { setFormStatus("idle"); setFormError(null); }}
+                    className="ml-auto shrink-0 opacity-50 hover:opacity-100 transition-opacity"
+                    aria-label="Dismiss"
+                  >
+                    <X size={14} />
+                  </button>
+                </div>
+              )}
+
               <div className="flex flex-col gap-4 sm:flex-row">
-                <input
-                  type="email"
-                  value={contactEmail}
-                  onChange={e => setContactEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  required
-                  className="flex-1 rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-200 focus:ring-1 focus:ring-sky-400/50"
-                  style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(56,189,248,0.18)",
-                  }}
-                  onFocus={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.55)")}
-                  onBlur={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.18)")}
-                />
-                <input
-                  type="text"
-                  value={contactQuery}
-                  onChange={e => setContactQuery(e.target.value)}
-                  placeholder="Enter your query"
-                  className="flex-1 rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-200 focus:ring-1 focus:ring-sky-400/50"
-                  style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(56,189,248,0.18)",
-                  }}
-                  onFocus={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.55)")}
-                  onBlur={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.18)")}
-                />
+                <div className="flex-1 flex flex-col gap-1">
+                  <input
+                    type="email"
+                    value={contactEmail}
+                    onChange={e => { setContactEmail(e.target.value); if (formError) setFormError(null); }}
+                    placeholder="Enter your email *"
+                    required
+                    disabled={formStatus === "submitting"}
+                    aria-label="Email address"
+                    className="w-full rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-200 focus:ring-1 focus:ring-sky-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(56,189,248,0.18)",
+                    }}
+                    onFocus={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.55)")}
+                    onBlur={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.18)")}
+                  />
+                </div>
+                <div className="flex-1 flex flex-col gap-1">
+                  <input
+                    type="text"
+                    value={contactQuery}
+                    onChange={e => { setContactQuery(e.target.value); if (formError) setFormError(null); }}
+                    placeholder="Enter your query *"
+                    required
+                    disabled={formStatus === "submitting"}
+                    aria-label="Your query"
+                    className="w-full rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-200 focus:ring-1 focus:ring-sky-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(56,189,248,0.18)",
+                    }}
+                    onFocus={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.55)")}
+                    onBlur={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.18)")}
+                  />
+                </div>
               </div>
 
               <div className="mt-5 flex justify-center">
                 <button
                   type="submit"
-                  className="relative overflow-hidden rounded-full px-10 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95"
+                  disabled={formStatus === "submitting" || formStatus === "success"}
+                  className="relative overflow-hidden rounded-full px-10 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                   style={{
                     background: "rgba(8,12,28,0.9)",
                     border: "1px solid rgba(56,189,248,0.55)",
-                    boxShadow: submitted
+                    boxShadow: formStatus === "success"
                       ? "0 0 30px rgba(34,211,238,0.6)"
                       : "0 0 18px rgba(56,189,248,0.25)",
+                    minWidth: "140px",
                   }}
                 >
-                  <span className="relative z-10">
-                    {submitted ? "✓ Message Sent!" : "Submit"}
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    {formStatus === "submitting" ? (
+                      <>
+                        <span className="flex gap-1">
+                          {[0,1,2].map(i => (
+                            <span
+                              key={i}
+                              className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-bounce"
+                              style={{ animationDelay: `${i * 0.15}s` }}
+                            />
+                          ))}
+                        </span>
+                        <span>Sending…</span>
+                      </>
+                    ) : formStatus === "success" ? (
+                      "✓ Sent!"
+                    ) : (
+                      "Submit"
+                    )}
                   </span>
                   <span
                     className="absolute inset-0 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300"
@@ -705,6 +816,10 @@ function Portfolio() {
                   />
                 </button>
               </div>
+
+              <p className="mt-3 text-center font-mono text-[10px] tracking-widest text-muted-foreground/40 uppercase">
+                Both fields required · Rate-limited · Stored securely
+              </p>
             </form>
 
             {/* Divider */}
