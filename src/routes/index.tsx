@@ -6,6 +6,7 @@ import {
   BarChart3, Database, Palette, Brain, Star, GitFork, ExternalLink, X, ZoomIn,
 } from "lucide-react";
 import StarBorder from "@/components/StarBorder";
+import RotatingText from "@/components/RotatingText";
 
 const projects = [
   {
@@ -583,8 +584,22 @@ function Portfolio() {
           {/* Open for header */}
           <div className="mb-16 max-w-2xl">
             <p className="mb-3 font-mono text-xs tracking-[0.3em] text-sky-400/70 uppercase">— Let's Connect</p>
-            <h2 className="font-display text-5xl font-bold leading-tight text-foreground md:text-6xl lg:text-7xl">
+            <h2 className="font-display text-5xl font-bold leading-tight text-foreground md:text-6xl lg:text-7xl flex flex-wrap items-center gap-x-4 gap-y-2">
               I'm open for
+              <RotatingText
+                texts={["Networking", "Collaboration", "Suggestions"]}
+                rotationInterval={1800}
+                auto={true}
+                loop={true}
+                staggerFrom="last"
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "-120%", opacity: 0 }}
+                staggerDuration={0.025}
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                mainClassName="inline-flex px-3 py-1 rounded-lg bg-cyan-400 text-black font-semibold overflow-hidden"
+                splitLevelClassName="overflow-hidden"
+              />
             </h2>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
               I appreciate your interest in connecting with me. I'm excited to explore new opportunities, receive feedback, collaborate on projects, and broaden my network.

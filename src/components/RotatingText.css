@@ -1,0 +1,5 @@
+.rotating-text-wrapper {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: bottom;
+}
