@@ -279,7 +279,7 @@ function Portfolio() {
                 <div className="group rounded-2xl border border-border bg-card/40 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] p-6">
                   <div className="flex items-start gap-5">
                   {/* Logo — small box on left */}
-                  <div className="shrink-0 flex items-center justify-center rounded-xl bg-white border border-border w-16 h-16 p-1.5">
+                  <div className="shrink-0 flex items-center justify-center bg-white border border-border w-16 h-16 p-1.5">
                     <img
                       src="/whiteandbox-logo.jpg"
                       alt="White and Box logo"
@@ -327,7 +327,7 @@ function Portfolio() {
                 <div className="group rounded-2xl border border-border bg-card/40 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] p-6">
                   <div className="flex items-start gap-5">
                     {/* Logo — small box on left */}
-                    <div className="shrink-0 flex items-center justify-center rounded-xl bg-white border border-border w-16 h-16 p-1.5">
+                    <div className="shrink-0 flex items-center justify-center bg-white border border-border w-16 h-16 p-1.5">
                       <img
                         src="/makelabs-logo.jpg"
                         alt="MAKE Labs logo"
@@ -341,7 +341,7 @@ function Portfolio() {
                         MAKE Labs | Krishnagiri & Bengaluru
                       </p>
                       <p className="mt-1 font-mono text-xs text-muted-foreground">
-                        Add Your Internship Period
+                        June 2025 – July 2025
                       </p>
                       <p className="mt-4 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
                         MAKE Labs is a technology startup specializing in web design, product development, research and development, robotics, and innovative technology solutions. I worked as a UI/UX Design Intern, contributing to the design and development of user-friendly digital experiences for web and mobile platforms.
