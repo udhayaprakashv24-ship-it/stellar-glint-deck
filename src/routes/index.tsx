@@ -162,11 +162,7 @@ function Portfolio() {
       <div className="mx-auto max-w-7xl px-6 py-10 md:px-12 md:py-16">
         {/* Header */}
         <header className="mb-12 flex items-center justify-between border-b border-border/40 pb-6">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-foreground font-semibold">
-              UPV
-            </span>
-          </div>
+          <div />
           <div className="flex items-center gap-4">
             {contacts.map(({ icon: Icon, label, href }) => (
               <a
@@ -188,20 +184,18 @@ function Portfolio() {
           <div className="relative md:col-span-6">
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/40 via-transparent to-transparent blur-2xl" aria-hidden />
             <div className="relative">
-              {portrait.url ? (
-                <img
-                  src={portrait.url}
-                  alt="Portrait of Udhaya Prakash V"
-                  className="aspect-[4/5] w-full object-contain scale-105 transition-transform duration-500 hover:scale-110"
-                />
-              ) : (
-                <div className="aspect-[4/5] w-full flex items-center justify-center rounded-2xl border border-primary/20 bg-primary/5">
-                  <span className="font-display text-6xl text-primary/40 select-none">UPV</span>
-                </div>
+              {portrait.url && (
+                <>
+                  <img
+                    src={portrait.url}
+                    alt="Portrait of Udhaya Prakash V"
+                    className="aspect-[4/5] w-full object-contain scale-105 transition-transform duration-500 hover:scale-110"
+                  />
+                  <p className="absolute bottom-4 left-0 right-0 text-center font-display text-2xl uppercase tracking-[0.8em] pl-[0.8em] text-foreground md:text-3xl">
+                    PORTFOLIO
+                  </p>
+                </>
               )}
-              <p className="absolute bottom-4 left-0 right-0 text-center font-display text-2xl uppercase tracking-[0.8em] pl-[0.8em] text-foreground md:text-3xl">
-                PORTFOLIO
-              </p>
             </div>
           </div>
 
