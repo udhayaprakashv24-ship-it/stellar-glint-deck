@@ -91,9 +91,15 @@ export default function AIChat() {
     {
       role: "assistant",
       text: "Hi! I'm Udhaya Prakash's AI Assistant. I can answer questions about his Data Analytics skills, UI/UX Design experience, projects, certifications, education, achievements, resume, and career goals. What would you like to know?",
-      time: now(),
+      time: "",
     },
   ]);
+
+  useEffect(() => {
+    setMessages((m) =>
+      m.map((msg, i) => (i === 0 && msg.time === "" ? { ...msg, time: now() } : msg))
+    );
+  }, []);
   const [typing, setTyping] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
