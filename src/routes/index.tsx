@@ -159,10 +159,9 @@ function Portfolio() {
         <div className="absolute bottom-0 right-0 h-[600px] w-[600px] rounded-full bg-primary/15 blur-[140px]" />
       </div>
 
+      {/* Header */}
       <div className="mx-auto max-w-7xl px-6 py-10 md:px-12 md:py-16">
-        {/* Header */}
-        <header className="mb-12 flex items-center justify-between border-b border-border/40 pb-6">
-          <div />
+        <header className="mb-0 flex items-center justify-end border-b border-border/40 pb-6">
           <div className="flex items-center gap-4">
             {contacts.map(({ icon: Icon, label, href }) => (
               <a
@@ -178,33 +177,51 @@ function Portfolio() {
             ))}
           </div>
         </header>
+      </div>
 
-        {/* Hero */}
-        <section className={portrait.url ? "grid grid-cols-1 md:grid-cols-12 items-end gap-0" : "flex flex-col items-center text-center py-16"}>
-          {portrait.url && (
-            <div className="relative md:col-span-5 flex items-end justify-center">
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-primary/20 blur-3xl" aria-hidden />
+      {/* Hero — full-width so photo can sit flush left */}
+      <section className="relative w-full overflow-hidden">
+        {portrait.url ? (
+          <div className="flex flex-col md:flex-row items-end">
+            {/* Photo flush to left */}
+            <div className="relative flex-shrink-0 flex items-end justify-start pl-0">
+              <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-primary/25 blur-3xl" aria-hidden />
               <img
                 src={portrait.url}
                 alt="Portrait of Udhaya Prakash V"
-                className="relative w-full max-w-xs md:max-w-sm object-contain object-bottom transition-transform duration-500 hover:scale-105"
-                style={{ maxHeight: "420px" }}
+                className="relative object-contain object-bottom transition-transform duration-500 hover:scale-105"
+                style={{ height: "420px", width: "auto" }}
               />
             </div>
-          )}
-
-          <div className={`flex flex-col justify-center pb-10 ${portrait.url ? "md:col-span-7 md:pl-8" : "items-center"}`}>
-            <h1 className="font-display text-5xl leading-[0.95] tracking-tight text-foreground md:text-7xl lg:text-8xl">
+            {/* Name on the right */}
+            <div className="flex flex-col justify-center pb-12 px-8 md:px-16">
+              <h1 className="font-display text-5xl leading-[0.95] tracking-tight text-foreground md:text-7xl lg:text-8xl">
+                UDHAYA
+                <br />
+                PRAKASH <span className="text-primary">V</span>
+              </h1>
+              <div className="mt-5 h-px w-20 bg-primary" />
+              <p className="mt-5 text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground md:text-base">
+                Data Analytics <span className="text-primary">·</span> UI/UX Designer
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center text-center py-16 px-6">
+            <h1 className="font-display text-6xl leading-[0.95] tracking-tight text-foreground md:text-8xl">
               UDHAYA
               <br />
               PRAKASH <span className="text-primary">V</span>
             </h1>
-            <div className={`mt-5 h-px w-20 bg-primary ${portrait.url ? "" : "mx-auto"}`} />
+            <div className="mt-5 h-px w-20 bg-primary mx-auto" />
             <p className="mt-5 text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground md:text-base">
               Data Analytics <span className="text-primary">·</span> UI/UX Designer
             </p>
           </div>
-        </section>
+        )}
+      </section>
+
+      <div className="mx-auto max-w-7xl px-6 py-10 md:px-12 md:py-16">
 
         {/* About */}
         <section className="mt-24">
