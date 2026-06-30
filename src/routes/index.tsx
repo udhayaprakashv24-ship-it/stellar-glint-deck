@@ -678,9 +678,8 @@ function Portfolio() {
 
           {/* Highlights Wall — masonry infinite-scroll */}
           {(() => {
-            const col1 = [1,4,7,10,13,16,19].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
-            const col2 = [2,5,8,11,14,17,21].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
-            const col3 = [3,6,9,12,15,18,20].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
+            const col1 = [1,4,7,10,13,16].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
+            const col2 = [2,5,8,11,14,17].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
 
             const Column = ({ posts, duration, delay = "0s" }: { posts: string[]; duration: string; delay?: string }) => (
               <div className="flex-1 min-w-0 overflow-hidden">
@@ -723,20 +722,10 @@ function Portfolio() {
                   WebkitBackdropFilter: "blur(20px)",
                 }}
               >
-                {/* 3-column masonry wall — all cols visible, same speed */}
-                <div className="flex gap-2 p-2 h-full overflow-hidden md:gap-3 md:p-3">
+                {/* 2-column masonry wall */}
+                <div className="flex gap-3 p-3 h-full overflow-hidden md:gap-4 md:p-4">
                   <Column posts={col1} duration="50s" delay="0s" />
-                  <Column posts={col2} duration="50s" delay="-16.7s" />
-                  <div className="flex flex-1 min-w-0 overflow-hidden">
-                    <div className="linkedin-wall-col flex flex-col gap-2 w-full md:gap-3" style={{ animation: `wallScroll 50s linear -33.4s infinite` }}>
-                      {[...col3, ...col3].map((src, i) => (
-                        <a key={i} href="https://linkedin.com/in/udhaya-prakash-v-022b22374" target="_blank" rel="noreferrer" className="linkedin-post-card group relative block overflow-hidden rounded-xl transition-all duration-300 cursor-pointer" style={{ border: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.03)" }}>
-                          <img src={src} alt="LinkedIn post" className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="eager" draggable={false} />
-                          <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                        </a>
-                      ))}
-                    </div>
-                  </div>
+                  <Column posts={col2} duration="50s" delay="-25s" />
                 </div>
 
               </div>
