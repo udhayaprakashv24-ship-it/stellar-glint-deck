@@ -679,11 +679,11 @@ function Portfolio() {
           {/* Highlights Wall — masonry infinite-scroll */}
           {(() => {
             const col1 = [1,4,7,10,13,16,19].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
-            const col2 = [2,5,8,11,14,17,20].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
-            const col3 = [3,6,9,12,15,18].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
+            const col2 = [2,5,8,11,14,17,21].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
+            const col3 = [3,6,9,12,15,18,20].map(n => `/linkedin-posts/post-${String(n).padStart(2,"0")}.jpeg`);
 
             const Column = ({ posts, duration, delay = "0s" }: { posts: string[]; duration: string; delay?: string }) => (
-              <div className="flex-1 min-w-0 overflow-hidden" style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+              <div className="flex-1 min-w-0 overflow-hidden">
                 <div
                   className="linkedin-wall-col flex flex-col gap-2 md:gap-3"
                   style={{ animation: `wallScroll ${duration} linear ${delay} infinite` }}
@@ -727,7 +727,7 @@ function Portfolio() {
                 <div className="flex gap-2 p-2 h-full overflow-hidden md:gap-3 md:p-3">
                   <Column posts={col1} duration="50s" delay="0s" />
                   <Column posts={col2} duration="50s" delay="-16.7s" />
-                  <div className="flex flex-1 min-w-0 overflow-hidden" style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+                  <div className="flex flex-1 min-w-0 overflow-hidden">
                     <div className="linkedin-wall-col flex flex-col gap-2 w-full md:gap-3" style={{ animation: `wallScroll 50s linear -33.4s infinite` }}>
                       {[...col3, ...col3].map((src, i) => (
                         <a key={i} href="https://linkedin.com/in/udhaya-prakash-v-022b22374" target="_blank" rel="noreferrer" className="linkedin-post-card group relative block overflow-hidden rounded-xl transition-all duration-300 cursor-pointer" style={{ border: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.03)" }}>
@@ -739,9 +739,6 @@ function Portfolio() {
                   </div>
                 </div>
 
-                {/* Top & bottom atmospheric fades */}
-                <div className="pointer-events-none absolute top-[44px] left-0 right-0 h-12 z-10" style={{ background: "linear-gradient(to bottom, rgba(8,8,18,0.85) 0%, transparent 100%)" }} />
-                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 z-10" style={{ background: "linear-gradient(to top, rgba(8,8,18,0.85) 0%, transparent 100%)" }} />
               </div>
             );
           })()}
