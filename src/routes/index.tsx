@@ -290,45 +290,6 @@ function Portfolio() {
               B.Tech student in AI & Data Science. Turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
             </p>
 
-            {/* CTA buttons */}
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="mailto:udhayaprakashv.24@gmail.com?subject=Resume Request"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-200 hover:scale-105 hover:shadow-primary/50 active:scale-95"
-              >
-                <Download className="h-4 w-4" />
-                Resume
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-lg border border-primary/50 px-6 py-2.5 text-sm font-bold uppercase tracking-wider text-primary transition-all duration-200 hover:scale-105 hover:bg-primary/10 hover:border-primary active:scale-95"
-              >
-                Contact
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-
-            {/* Social icons */}
-            <div className="mt-8 flex items-center gap-3">
-              {[
-                { icon: Linkedin, href: "https://linkedin.com/in/udhaya-prakash-v-022b22374", label: "LinkedIn" },
-                { icon: Github, href: "https://github.com/udhayaprakashv24-ship-it", label: "GitHub" },
-                { icon: Twitter, href: "https://x.com/VUdhaya63542", label: "X / Twitter" },
-                { icon: Instagram, href: "https://instagram.com/the_usos_boy", label: "Instagram" },
-                { icon: Mail, href: "mailto:udhayaprakashv24@gmail.com", label: "Email" },
-              ].map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel="noreferrer"
-                  aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-border/50 text-muted-foreground transition-all duration-200 hover:border-primary/70 hover:text-primary hover:bg-primary/10 hover:scale-110"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
           </div>
         </div>
       </section>
