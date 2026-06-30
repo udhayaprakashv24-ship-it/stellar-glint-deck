@@ -701,7 +701,7 @@ function Portfolio() {
                         src={src}
                         alt={`LinkedIn post`}
                         className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                        loading="lazy"
+                        loading="eager"
                         draggable={false}
                       />
                       <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -731,7 +731,7 @@ function Portfolio() {
                     <div className="linkedin-wall-col flex flex-col gap-2 w-full md:gap-3" style={{ animation: `wallScroll 50s linear -33.4s infinite` }}>
                       {[...col3, ...col3].map((src, i) => (
                         <a key={i} href="https://linkedin.com/in/udhaya-prakash-v-022b22374" target="_blank" rel="noreferrer" className="linkedin-post-card group relative block overflow-hidden rounded-xl transition-all duration-300 cursor-pointer" style={{ border: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.03)" }}>
-                          <img src={src} alt="LinkedIn post" className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" draggable={false} />
+                          <img src={src} alt="LinkedIn post" className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="eager" draggable={false} />
                           <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                         </a>
                       ))}
