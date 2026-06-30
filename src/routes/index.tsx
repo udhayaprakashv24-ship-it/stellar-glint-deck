@@ -290,6 +290,14 @@ function Portfolio() {
               B.Tech student in AI & Data Science. Turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
             </p>
 
+            {/* Learn More — square box button */}
+            <a
+              href="#about"
+              className="mt-8 inline-flex items-center gap-2 rounded-none border-2 border-primary px-8 py-3 text-sm font-bold uppercase tracking-[0.2em] text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground active:scale-95"
+            >
+              Learn More
+            </a>
+
           </div>
         </div>
       </section>
