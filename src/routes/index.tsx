@@ -204,42 +204,42 @@ function Portfolio() {
       <section className="relative flex min-h-screen w-full flex-col overflow-hidden">
 
         {/* ── Header ── */}
-        <header className="relative z-20 flex shrink-0 items-center justify-between px-6 py-4 md:px-10">
+        <header className="relative z-20 flex shrink-0 items-center justify-between px-4 py-3 md:px-10 md:py-4">
           {/* Left: avatar + name */}
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-primary/60 shadow-lg shadow-primary/20">
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="h-8 w-8 md:h-10 md:w-10 overflow-hidden rounded-full border-2 border-primary/60 shadow-lg shadow-primary/20 shrink-0">
               <img
                 src={portrait.url}
                 alt="Udhaya Prakash V"
                 className="h-full w-full object-cover object-top"
               />
             </div>
-            <span className="font-display text-sm font-semibold tracking-wide text-foreground">
+            <span className="font-display text-xs font-semibold tracking-wide text-foreground sm:text-sm">
               Udhaya Prakash V
             </span>
           </div>
-          {/* Right: social nav icons */}
-          <div className="flex items-center gap-4">
-            {contacts.map(({ icon: Icon, label, href }) => (
+          {/* Right: social nav icons — hide less-important ones on small screens */}
+          <div className="flex items-center gap-2 md:gap-4">
+            {contacts.map(({ icon: Icon, label, href }, idx) => (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel="noreferrer"
-                className="text-muted-foreground transition-colors hover:text-primary"
                 aria-label={label}
+                className={`text-muted-foreground transition-colors hover:text-primary ${idx < 2 ? "hidden sm:block" : ""}`}
               >
-                <Icon className="h-4 w-4" />
+                <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />
               </a>
             ))}
           </div>
         </header>
 
         {/* ── Split Hero Body ── */}
-        <div className="relative flex flex-1 flex-col md:flex-row">
+        <div className="relative flex flex-1 flex-col md:flex-row overflow-hidden">
 
-          {/* LEFT — full-height photo */}
-          <div className="relative flex-shrink-0 flex items-end justify-center md:w-[52%]">
+          {/* LEFT — photo */}
+          <div className="relative flex shrink-0 items-end justify-center md:w-[52%] h-[42vh] md:h-auto">
             {/* Glow behind photo */}
             <div
               className="pointer-events-none absolute inset-0"
@@ -249,35 +249,37 @@ function Portfolio() {
               }}
               aria-hidden
             />
-            {/* Portrait — transparent bg naturally shows portfolio gradient */}
+            {/* Portrait */}
             <img
               src={portrait.url}
               alt="Portrait of Udhaya Prakash V"
               className="relative z-10 h-full w-full object-contain object-bottom select-none"
-              style={{ maxHeight: "calc(100vh - 4rem)" }}
             />
-            {/* Right-edge fade → seamless blend to right panel */}
+            {/* Right-edge fade on desktop */}
             <div
-              className="pointer-events-none absolute inset-y-0 right-0 w-32 z-20"
-              style={{
-                background:
-                  "linear-gradient(to right, transparent, oklch(0.08 0.018 255))",
-              }}
+              className="pointer-events-none absolute inset-y-0 right-0 hidden w-32 md:block z-20"
+              style={{ background: "linear-gradient(to right, transparent, oklch(0.08 0.018 255))" }}
+              aria-hidden
+            />
+            {/* Bottom-edge fade on mobile */}
+            <div
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 md:hidden z-20"
+              style={{ background: "linear-gradient(to bottom, transparent, oklch(0.08 0.018 255))" }}
               aria-hidden
             />
           </div>
 
           {/* RIGHT — text content */}
-          <div className="relative z-10 flex flex-1 flex-col justify-center px-8 py-12 md:px-12 lg:px-16">
+          <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-8 text-center md:items-start md:px-12 md:py-0 md:text-left lg:px-16">
             {/* Small name label */}
-            <p className="font-mono text-xs font-semibold uppercase tracking-[0.35em] text-foreground">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.35em] text-foreground sm:text-xs">
               Udhaya Prakash V
             </p>
 
             {/* Large "I'm [ROLE]" heading */}
             <h1
-              className="mt-3 font-display font-bold leading-[1.0] tracking-tight"
-              style={{ fontSize: "clamp(2.4rem, 5.5vw, 5rem)" }}
+              className="mt-2 font-display font-bold leading-[1.0] tracking-tight md:mt-3"
+              style={{ fontSize: "clamp(2rem, 6vw, 5rem)" }}
             >
               I'M{" "}
               <span className="inline-block overflow-hidden align-bottom">
@@ -291,38 +293,37 @@ function Portfolio() {
             </h1>
 
             {/* Divider */}
-            <div className="mt-5 h-px w-14 bg-primary/70" />
+            <div className="mt-4 h-px w-12 bg-primary/70" />
 
             {/* Short intro */}
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground md:text-base">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground md:text-base">
               B.Tech student in AI & Data Science. Turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
             </p>
 
             {/* Learn More — square box button */}
             <a
               href="#about"
-              className="mt-8 inline-flex items-center gap-2 rounded-none border-2 border-primary px-8 py-3 text-sm font-bold uppercase tracking-[0.2em] text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground active:scale-95"
+              className="mt-6 inline-flex items-center gap-2 rounded-none border-2 border-primary px-6 py-2.5 text-sm font-bold uppercase tracking-[0.2em] text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground active:scale-95 md:px-8 md:py-3"
             >
               Learn More
             </a>
-
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-6 py-10 md:px-12 md:py-16">
+      <div id="about" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:px-12 md:py-16">
 
         {/* About */}
-        <section className="mt-24">
-          <div className="mb-8">
+        <section className="mt-14 md:mt-24">
+          <div className="mb-6 md:mb-8">
             <SectionLabel title="About Me" />
           </div>
           <div className="max-w-4xl">
-            <div className="space-y-6">
-              <p className="text-xl md:text-2xl leading-relaxed text-foreground/90 border-l-2 border-primary/60 pl-4 font-light">
+            <div className="space-y-4 md:space-y-6">
+              <p className="text-base md:text-xl lg:text-2xl leading-relaxed text-foreground/90 border-l-2 border-primary/60 pl-4 font-light">
                 B.Tech student in Artificial Intelligence & Data Science. Turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
               </p>
-              <p className="text-base md:text-lg leading-relaxed text-muted-foreground pl-4">
+              <p className="text-sm md:text-base lg:text-lg leading-relaxed text-muted-foreground pl-4">
                 Passionate about Data Analytics and UI/UX Design, blending structured scientific inquiry with intuitive digital aesthetics. Skilled in Python, SQL, Excel, Power BI, Tableau, and Figma. I focus on bridging the gap between numbers and human experiences to build recruiter-friendly systems and high-impact designs.
               </p>
             </div>
@@ -330,11 +331,11 @@ function Portfolio() {
         </section>
 
         {/* Core Skills */}
-        <section className="mt-24">
-          <div className="mb-8">
+        <section className="mt-14 md:mt-24">
+          <div className="mb-6 md:mb-8">
             <SectionLabel title="Core Skills" />
           </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 md:gap-3">
             {skills.map(({ name, icon: Icon }) => (
               <div
                 key={name}
@@ -348,24 +349,24 @@ function Portfolio() {
         </section>
 
         {/* Experience */}
-        <section className="mt-24">
-          <div className="mb-8">
+        <section className="mt-14 md:mt-24">
+          <div className="mb-6 md:mb-8">
             <SectionLabel title="Experience" />
           </div>
           <div className="max-w-4xl">
-            <div className="relative border-l border-border/60 pl-8 ml-4 space-y-12">
+            <div className="relative border-l border-border/60 pl-5 ml-3 space-y-10 md:pl-8 md:ml-4 md:space-y-12">
               {/* Timeline Node */}
               <div className="relative">
                 {/* Bullet node on the left line */}
-                <span className="absolute -left-[37px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background border border-primary">
+                <span className="absolute -left-[29px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background border border-primary md:-left-[37px]">
                   <span className="h-2 w-2 rounded-full bg-primary" />
                 </span>
                 
                 {/* Content Card */}
-                <div className="group rounded-2xl border border-border bg-card/40 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] p-6">
-                  <div className="flex items-start gap-5">
+                <div className="group rounded-2xl border border-border bg-card/40 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] p-4 md:p-6">
+                  <div className="flex items-start gap-3 md:gap-5">
                   {/* Logo — small box on left */}
-                  <div className="shrink-0 flex items-center justify-center bg-white border border-border w-16 h-16 p-1.5">
+                  <div className="shrink-0 flex items-center justify-center bg-white border border-border w-12 h-12 p-1 md:w-16 md:h-16 md:p-1.5">
                     <img
                       src="/whiteandbox-logo.jpg"
                       alt="White and Box logo"
@@ -406,14 +407,14 @@ function Portfolio() {
 
               {/* MAKE Labs */}
               <div className="relative">
-                <span className="absolute -left-[37px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background border border-primary">
+                <span className="absolute -left-[29px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background border border-primary md:-left-[37px]">
                   <span className="h-2 w-2 rounded-full bg-primary" />
                 </span>
 
-                <div className="group rounded-2xl border border-border bg-card/40 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] p-6">
-                  <div className="flex items-start gap-5">
+                <div className="group rounded-2xl border border-border bg-card/40 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] p-4 md:p-6">
+                  <div className="flex items-start gap-3 md:gap-5">
                     {/* Logo — small box on left */}
-                    <div className="shrink-0 flex items-center justify-center bg-white border border-border w-16 h-16 p-1.5">
+                    <div className="shrink-0 flex items-center justify-center bg-white border border-border w-12 h-12 p-1 md:w-16 md:h-16 md:p-1.5">
                       <img
                         src="/makelabs-logo.jpg"
                         alt="MAKE Labs logo"
@@ -456,8 +457,8 @@ function Portfolio() {
         </section>
 
         {/* Projects */}
-        <section className="mt-24">
-          <div className="mb-8">
+        <section className="mt-14 md:mt-24">
+          <div className="mb-6 md:mb-8">
             <SectionLabel title="Projects" />
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -608,8 +609,8 @@ function Portfolio() {
         </section>
 
         {/* Connecting, Learning, and Growing Together */}
-        <section className="mt-24">
-          <div className="mb-8">
+        <section className="mt-14 md:mt-24">
+          <div className="mb-6 md:mb-8">
             <SectionLabel title="Connecting, Learning & Growing" />
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
               Explore my insights and experiences from various industry events, certifications, workshops, hackathons, and professional meetups where I share key learnings, valuable connections, achievements, and moments that have shaped my journey in Data Analytics, AI, and UI/UX Design.
@@ -655,7 +656,7 @@ function Portfolio() {
               <div
                 className="linkedin-feed-frame relative w-full overflow-hidden rounded-[20px] transition-all duration-300"
                 style={{
-                  height: "680px",
+                  height: "clamp(340px, 55vh, 680px)",
                   background: "rgba(8, 8, 18, 0.80)",
                   border: "1px solid rgba(56, 189, 248, 0.35)",
                   boxShadow: "0 0 40px -10px rgba(56, 189, 248, 0.3), inset 0 0 80px rgba(0,0,0,0.4), 0 12px 50px rgba(0,0,0,0.7)",
@@ -663,11 +664,20 @@ function Portfolio() {
                   WebkitBackdropFilter: "blur(20px)",
                 }}
               >
-                {/* 3-column masonry wall */}
-                <div className="flex gap-3 p-3 h-full overflow-hidden">
+                {/* 3-column masonry wall — 2 cols on mobile */}
+                <div className="flex gap-2 p-2 h-full overflow-hidden md:gap-3 md:p-3">
                   <Column posts={col1} duration="45s" delay="0s" />
                   <Column posts={col2} duration="55s" delay="-18s" />
-                  <Column posts={col3} duration="40s" delay="-8s" />
+                  <div className="hidden sm:flex flex-1 min-w-0 overflow-hidden" style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+                    <div className="linkedin-wall-col flex flex-col gap-3 w-full" style={{ animation: `wallScroll 40s linear -8s infinite` }}>
+                      {[...col3, ...col3].map((src, i) => (
+                        <a key={i} href="https://linkedin.com/in/udhaya-prakash-v-022b22374" target="_blank" rel="noreferrer" className="linkedin-post-card group relative block overflow-hidden rounded-xl transition-all duration-300 cursor-pointer" style={{ border: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.03)" }}>
+                          <img src={src} alt="LinkedIn post" className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" draggable={false} />
+                          <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Top & bottom atmospheric fades */}
@@ -679,10 +689,10 @@ function Portfolio() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="mt-24">
+        <section id="contact" className="mt-14 md:mt-24">
           {/* Open for header */}
-          <div className="mb-16 max-w-2xl">
-            <h2 className="font-display text-5xl font-bold leading-tight text-foreground md:text-6xl lg:text-7xl flex flex-wrap items-center gap-x-4 gap-y-2">
+          <div className="mb-10 max-w-2xl md:mb-16">
+            <h2 className="font-display flex flex-wrap items-center gap-x-3 gap-y-2 text-3xl font-bold leading-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
               I'm open for
               <RotatingText
                 texts={["Networking", "Collaboration", "Suggestions"]}
@@ -933,8 +943,8 @@ function Portfolio() {
 function SectionLabel({ title }: { title: string }) {
   return (
     <div>
-      <h2 className="font-display text-4xl tracking-wide text-foreground md:text-5xl">{title}</h2>
-      <div className="mt-4 h-px w-16 bg-primary" />
+      <h2 className="font-display text-3xl tracking-wide text-foreground sm:text-4xl md:text-5xl">{title}</h2>
+      <div className="mt-3 h-px w-12 bg-primary md:mt-4 md:w-16" />
     </div>
   );
 }

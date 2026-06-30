@@ -1,0 +1,93 @@
+Make the entire portfolio fully responsive across all devices while keeping the existing design, animations, colors, and functionality unchanged.
+
+Objective:
+The portfolio should automatically adapt to every screen size so that it looks professional on mobile phones, tablets, laptops, and desktop monitors without any layout issues.
+
+Requirements:
+
+1. Responsive Layout
+- Make the website fully responsive using modern CSS (Flexbox/Grid).
+- Use responsive breakpoints instead of fixed widths.
+- Ensure all sections resize automatically based on screen size.
+- Remove any horizontal scrolling.
+- Prevent elements from overlapping or overflowing.
+
+2. Hero Section
+- Keep the profile image, name, domain/role, rotating text, description, buttons, and social icons perfectly aligned on every device.
+- On Desktop/Laptop:
+  - Display the hero section in a clean horizontal layout.
+  - Keep the profile image and text properly balanced.
+- On Tablet:
+  - Adjust spacing and font sizes for medium screens.
+- On Mobile:
+  - Stack the profile image above the text.
+  - Center all content.
+  - Keep proper spacing between every element.
+  - Ensure everything fits within the screen width.
+
+3. Navigation
+- Desktop: Display the full navigation bar.
+- Tablet/Mobile: Replace it with a responsive hamburger menu.
+- Ensure the menu opens and closes smoothly.
+- Highlight the active section.
+
+4. Images
+- Make every image responsive.
+- Prevent stretching or distortion.
+- Use object-fit: cover where needed.
+- Ensure profile images and project images scale correctly.
+
+5. Typography
+- Use responsive font sizes (clamp() or equivalent).
+- Prevent text from overflowing.
+- Maintain readability across all screen sizes.
+
+6. Cards and Sections
+- Projects, Skills, Certificates, Experience, and Contact sections should:
+  - Display multiple columns on desktop.
+  - Reduce to two columns on tablets.
+  - Display a single column on mobile.
+- Maintain equal spacing and alignment.
+
+7. Buttons
+- Buttons should resize automatically.
+- Keep proper padding and spacing.
+- Prevent buttons from overlapping.
+
+8. AI Chatbox
+- Ensure the AI chatbox works correctly on:
+  - Desktop
+  - Laptop
+  - Tablet
+  - Mobile
+- Keep it fixed in the bottom-right corner.
+- Prevent it from covering important content.
+- Ensure it opens, closes, minimizes, and sends messages correctly on every device.
+
+9. Performance
+- Do not change the design, colors, fonts, animations, or content.
+- Improve responsiveness only.
+- Keep all existing functionality intact.
+
+10. Testing
+Test and verify the portfolio on:
+- Mobile (320px–480px)
+- Large Mobile (481px–767px)
+- Tablet (768px–1023px)
+- Laptop (1024px–1439px)
+- Desktop (1440px–1920px)
+- Ultra-wide screens (1920px+)
+
+Final Checklist:
+✔ Fully responsive on all screen sizes.
+✔ Perfect alignment on desktop, laptop, tablet, and mobile.
+✔ No horizontal scrolling.
+✔ No overlapping elements.
+✔ Hero section adapts correctly to every device.
+✔ Navigation works on all devices.
+✔ AI chatbox works on every screen size.
+✔ Images resize correctly.
+✔ Text remains readable.
+✔ Layout looks professional on phones, tablets, laptops, and desktops.
+✔ Existing design, animations, and functionality remain unchanged.
+✔ Deliver clean, production-ready responsive code.
