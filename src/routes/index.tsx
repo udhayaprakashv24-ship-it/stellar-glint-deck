@@ -195,8 +195,22 @@ function Portfolio() {
       {/* ── Full-screen Hero (100vh) ── */}
       <section className="relative flex min-h-screen w-full flex-col overflow-hidden">
 
-        {/* Header / Nav */}
-        <header className="flex shrink-0 items-center justify-end border-b border-border/40 px-6 py-4 md:px-12">
+        {/* ── Header ── */}
+        <header className="relative z-20 flex shrink-0 items-center justify-between px-6 py-4 md:px-10">
+          {/* Left: avatar + name */}
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-primary/60 shadow-lg shadow-primary/20">
+              <img
+                src={portrait.url}
+                alt="Udhaya Prakash V"
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
+            <span className="font-display text-sm font-semibold tracking-wide text-foreground">
+              Udhaya Prakash V
+            </span>
+          </div>
+          {/* Right: social nav icons */}
           <div className="flex items-center gap-4">
             {contacts.map(({ icon: Icon, label, href }) => (
               <a
@@ -213,102 +227,107 @@ function Portfolio() {
           </div>
         </header>
 
-        {/* Hero content — vertically centered in remaining space */}
-        <div className="flex flex-1 items-center justify-center px-6 py-8 md:px-12">
-          <div className="flex w-full max-w-7xl flex-col items-center gap-8 md:flex-row md:items-end md:gap-10 lg:gap-16">
+        {/* ── Split Hero Body ── */}
+        <div className="relative flex flex-1 flex-col md:flex-row">
 
-            {/* Profile photo */}
-            {portrait.url && (
-              <div className="relative shrink-0 flex items-end justify-center md:justify-start">
-                <div
-                  className="absolute bottom-0 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 h-56 w-56 rounded-full bg-primary/25 blur-3xl"
-                  aria-hidden
-                />
-                <img
-                  src={portrait.url}
-                  alt="Portrait of Udhaya Prakash V"
-                  className="relative object-contain object-bottom transition-transform duration-500 hover:scale-[1.03]"
-                  style={{
-                    height: "clamp(220px, 38vh, 420px)",
-                    width: "auto",
-                    maxWidth: "clamp(180px, 30vw, 340px)",
-                  }}
-                />
-              </div>
-            )}
+          {/* LEFT — full-height photo */}
+          <div className="relative flex-shrink-0 flex items-end justify-center md:w-[52%]">
+            {/* Glow behind photo */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 40% 80%, oklch(0.28 0.18 242 / 0.35) 0%, transparent 65%)",
+              }}
+              aria-hidden
+            />
+            {/* Portrait — transparent bg naturally shows portfolio gradient */}
+            <img
+              src={portrait.url}
+              alt="Portrait of Udhaya Prakash V"
+              className="relative z-10 h-full w-full object-contain object-bottom select-none"
+              style={{ maxHeight: "calc(100vh - 4rem)" }}
+            />
+            {/* Right-edge fade → seamless blend to right panel */}
+            <div
+              className="pointer-events-none absolute inset-y-0 right-0 w-32 z-20"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, oklch(0.08 0.018 255))",
+              }}
+              aria-hidden
+            />
+          </div>
 
-            {/* Text content */}
-            <div className="flex flex-col items-center text-center md:items-start md:text-left md:pb-8">
-              {/* Name */}
-              <h1
-                className="font-display font-bold leading-[0.92] tracking-tight"
-                style={{ fontSize: "clamp(2.6rem, 7vw, 6rem)" }}
-              >
-                UDHAYA
-                <br />
-                PRAKASH <span className="text-primary">V</span>
-              </h1>
+          {/* RIGHT — text content */}
+          <div className="relative z-10 flex flex-1 flex-col justify-center px-8 py-12 md:px-12 lg:px-16">
+            {/* Small name label */}
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.35em] text-primary">
+              Udhaya Prakash V
+            </p>
 
-              {/* Divider */}
-              <div className="mt-4 h-px w-16 bg-primary" />
-
-              {/* Rotating role */}
-              <div className="mt-4 flex items-center gap-2 font-display text-sm font-semibold uppercase tracking-[0.28em] text-muted-foreground md:text-base">
+            {/* Large "I'm [ROLE]" heading */}
+            <h1
+              className="mt-3 font-display font-bold leading-[1.0] tracking-tight"
+              style={{ fontSize: "clamp(2.4rem, 5.5vw, 5rem)" }}
+            >
+              I'M{" "}
+              <span className="inline-block overflow-hidden align-bottom">
                 <RotatingText
-                  texts={["Data Analytics", "UI/UX Designer", "Problem Solver", "Creative Thinker"]}
+                  texts={["DESIGNER", "ANALYST", "CREATOR", "LEARNER"]}
                   mainClassName="text-primary"
                   splitLevelClassName="overflow-hidden"
-                  rotationInterval={2200}
+                  rotationInterval={2000}
                 />
-              </div>
+              </span>
+            </h1>
 
-              {/* Short intro */}
-              <p
-                className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base"
-                style={{ fontFamily: "var(--font-sans)" }}
+            {/* Divider */}
+            <div className="mt-5 h-px w-14 bg-primary/70" />
+
+            {/* Short intro */}
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground md:text-base">
+              B.Tech student in AI & Data Science. Turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
+            </p>
+
+            {/* CTA buttons */}
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="mailto:udhayaprakashv.24@gmail.com?subject=Resume Request"
+                className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-200 hover:scale-105 hover:shadow-primary/50 active:scale-95"
               >
-                B.Tech student in AI & Data Science — turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
-              </p>
+                <Download className="h-4 w-4" />
+                Resume
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-lg border border-primary/50 px-6 py-2.5 text-sm font-bold uppercase tracking-wider text-primary transition-all duration-200 hover:scale-105 hover:bg-primary/10 hover:border-primary active:scale-95"
+              >
+                Contact
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
 
-              {/* CTA Buttons */}
-              <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+            {/* Social icons */}
+            <div className="mt-8 flex items-center gap-3">
+              {[
+                { icon: Linkedin, href: "https://linkedin.com/in/udhaya-prakash-v-022b22374", label: "LinkedIn" },
+                { icon: Github, href: "https://github.com/udhayaprakashv24-ship-it", label: "GitHub" },
+                { icon: Twitter, href: "https://x.com/VUdhaya63542", label: "X / Twitter" },
+                { icon: Instagram, href: "https://instagram.com/the_usos_boy", label: "Instagram" },
+                { icon: Mail, href: "mailto:udhayaprakashv24@gmail.com", label: "Email" },
+              ].map(({ icon: Icon, href, label }) => (
                 <a
-                  href="mailto:udhayaprakashv.24@gmail.com?subject=Resume Request"
-                  className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-200 hover:scale-105 hover:shadow-primary/50 active:scale-95"
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-border/50 text-muted-foreground transition-all duration-200 hover:border-primary/70 hover:text-primary hover:bg-primary/10 hover:scale-110"
                 >
-                  <Download className="h-4 w-4" />
-                  Resume
+                  <Icon className="h-4 w-4" />
                 </a>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 rounded-xl border border-primary/50 px-5 py-2.5 text-sm font-semibold text-primary transition-all duration-200 hover:scale-105 hover:bg-primary/10 hover:border-primary active:scale-95"
-                >
-                  Contact Me
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
-
-              {/* Social icons */}
-              <div className="mt-6 flex items-center gap-4">
-                {[
-                  { icon: Linkedin, href: "https://linkedin.com/in/udhaya-prakash-v-022b22374", label: "LinkedIn" },
-                  { icon: Github, href: "https://github.com/udhayaprakashv24-ship-it", label: "GitHub" },
-                  { icon: Twitter, href: "https://x.com/VUdhaya63542", label: "X / Twitter" },
-                  { icon: Instagram, href: "https://instagram.com/the_usos_boy", label: "Instagram" },
-                  { icon: Mail, href: "mailto:udhayaprakashv24@gmail.com", label: "Email" },
-                ].map(({ icon: Icon, href, label }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target={href.startsWith("http") ? "_blank" : undefined}
-                    rel="noreferrer"
-                    aria-label={label}
-                    className="flex h-9 w-9 items-center justify-center rounded-xl border border-border/60 text-muted-foreground transition-all duration-200 hover:border-primary/60 hover:text-primary hover:bg-primary/10 hover:scale-110"
-                  >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         </div>
