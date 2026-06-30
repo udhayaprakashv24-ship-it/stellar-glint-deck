@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getWebRequest } from "@tanstack/react-start/server";
+import { getRequestIP } from "@tanstack/react-start/server";
 import { z } from "zod";
 import { getPool } from "../lib/db";
 import { Resend } from "resend";
@@ -25,13 +25,10 @@ function checkRateLimit(ip: string): boolean {
 }
 
 export const submitContact = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => Schema.parse(data))
+  .validator((data: unknown) => Schema.parse(data))
   .handler(async ({ data }) => {
-    const request = getWebRequest();
     const ip =
-      request?.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-      request?.headers.get("cf-connecting-ip") ??
-      "unknown";
+      getRequestIP({ xForwardedFor: true }) ?? "unknown";
 
     if (!checkRateLimit(ip)) {
       throw new Error("Too many submissions. Please try again later.");
