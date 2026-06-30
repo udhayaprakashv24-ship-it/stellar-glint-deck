@@ -715,7 +715,7 @@ function Portfolio() {
               <div
                 className="linkedin-feed-frame relative w-full overflow-hidden rounded-[20px] transition-all duration-300"
                 style={{
-                  height: "clamp(280px, 50vh, 680px)",
+                  height: "clamp(520px, 85vh, 1040px)",
                   background: "rgba(8, 8, 18, 0.80)",
                   border: "1px solid rgba(56, 189, 248, 0.35)",
                   boxShadow: "0 0 40px -10px rgba(56, 189, 248, 0.3), inset 0 0 80px rgba(0,0,0,0.4), 0 12px 50px rgba(0,0,0,0.7)",
@@ -723,12 +723,12 @@ function Portfolio() {
                   WebkitBackdropFilter: "blur(20px)",
                 }}
               >
-                {/* 3-column masonry wall — 2 cols on mobile */}
+                {/* 3-column masonry wall — all cols visible, same speed */}
                 <div className="flex gap-2 p-2 h-full overflow-hidden md:gap-3 md:p-3">
-                  <Column posts={col1} duration="45s" delay="0s" />
-                  <Column posts={col2} duration="55s" delay="-18s" />
-                  <div className="hidden sm:flex flex-1 min-w-0 overflow-hidden" style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
-                    <div className="linkedin-wall-col flex flex-col gap-2 w-full md:gap-3" style={{ animation: `wallScroll 40s linear -8s infinite` }}>
+                  <Column posts={col1} duration="50s" delay="0s" />
+                  <Column posts={col2} duration="50s" delay="-16.7s" />
+                  <div className="flex flex-1 min-w-0 overflow-hidden" style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+                    <div className="linkedin-wall-col flex flex-col gap-2 w-full md:gap-3" style={{ animation: `wallScroll 50s linear -33.4s infinite` }}>
                       {[...col3, ...col3].map((src, i) => (
                         <a key={i} href="https://linkedin.com/in/udhaya-prakash-v-022b22374" target="_blank" rel="noreferrer" className="linkedin-post-card group relative block overflow-hidden rounded-xl transition-all duration-300 cursor-pointer" style={{ border: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.03)" }}>
                           <img src={src} alt="LinkedIn post" className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" draggable={false} />
