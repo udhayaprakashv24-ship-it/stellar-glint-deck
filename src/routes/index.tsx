@@ -262,7 +262,7 @@ function Portfolio() {
           {/* RIGHT — text content */}
           <div className="relative z-10 flex flex-1 flex-col justify-center px-8 py-12 md:px-12 lg:px-16">
             {/* Small name label */}
-            <p className="font-mono text-xs font-semibold uppercase tracking-[0.35em] text-primary">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.35em] text-foreground">
               Udhaya Prakash V
             </p>
 
