@@ -5,7 +5,7 @@ const portrait = { url: "/udhaya-portrait-nobg.png" };
 import {
   Phone, Mail, Linkedin, Github, Instagram,
   BarChart3, Database, Palette, Brain, Star, GitFork, ExternalLink, X, ZoomIn,
-  Download, ArrowRight,
+  Download, ArrowRight, Menu,
 } from "lucide-react";
 
 function XBrandIcon({ className }: { className?: string }) {
@@ -120,6 +120,7 @@ function Portfolio() {
   const [hoverRating, setHoverRating] = useState(0);
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [formError, setFormError] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
   const validateEmail = (email: string) =>
@@ -170,6 +171,14 @@ function Portfolio() {
     };
   }, [lightbox]);
 
+  // Close mobile menu on outside click / scroll
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const close = () => setMobileMenuOpen(false);
+    document.addEventListener("scroll", close, { passive: true });
+    return () => document.removeEventListener("scroll", close);
+  }, [mobileMenuOpen]);
+
   return (
     <main className="min-h-screen w-full overflow-x-hidden">
       {/* Lightbox overlay */}
@@ -218,28 +227,88 @@ function Portfolio() {
               Udhaya Prakash V
             </span>
           </div>
-          {/* Right: social nav icons — hide less-important ones on small screens */}
+
+          {/* Right: social icons (desktop) + hamburger (mobile) */}
           <div className="flex items-center gap-2 md:gap-4">
-            {contacts.map(({ icon: Icon, label, href }, idx) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel="noreferrer"
-                aria-label={label}
-                className={`text-muted-foreground transition-colors hover:text-primary ${idx < 2 ? "hidden sm:block" : ""}`}
+            {/* Desktop social icons */}
+            <div className="hidden md:flex items-center gap-4">
+              {contacts.map(({ icon: Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
+
+            {/* Mobile: show 3 most-used icons + hamburger */}
+            <div className="flex items-center gap-3 md:hidden">
+              {contacts.slice(2, 4).map(({ icon: Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+              <button
+                onClick={() => setMobileMenuOpen((o) => !o)}
+                aria-label="Toggle menu"
+                aria-expanded={mobileMenuOpen}
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
               >
-                <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />
-              </a>
-            ))}
+                {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile dropdown menu */}
+          {mobileMenuOpen && (
+            <div
+              className="absolute top-full left-0 right-0 z-30 mx-4 mt-1 rounded-2xl p-4 shadow-2xl md:hidden"
+              style={{
+                background: "rgba(8,12,28,0.97)",
+                border: "1px solid rgba(56,189,248,0.2)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+              }}
+            >
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
+                Connect
+              </p>
+              <div className="flex flex-col gap-3">
+                {contacts.map(({ icon: Icon, label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel="noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-white/5 hover:text-primary"
+                  >
+                    <Icon className="h-4 w-4 shrink-0 text-primary" />
+                    <span className="truncate">{label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </header>
 
         {/* ── Split Hero Body ── */}
         <div className="relative flex flex-1 flex-col md:flex-row overflow-hidden">
 
           {/* LEFT — photo */}
-          <div className="relative flex shrink-0 items-end justify-center md:w-[52%] h-[42vh] md:h-auto">
+          <div className="relative flex shrink-0 items-end justify-center md:w-[52%] h-[38vh] min-h-[240px] md:h-auto">
             {/* Glow behind photo */}
             <div
               className="pointer-events-none absolute inset-0"
@@ -270,16 +339,16 @@ function Portfolio() {
           </div>
 
           {/* RIGHT — text content */}
-          <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-8 text-center md:items-start md:px-12 md:py-0 md:text-left lg:px-16">
+          <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-5 py-6 text-center md:items-start md:px-12 md:py-0 md:text-left lg:px-16">
             {/* Small name label */}
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.35em] text-foreground sm:text-xs">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-foreground sm:text-xs sm:tracking-[0.35em]">
               Udhaya Prakash V
             </p>
 
             {/* Large "I'm [ROLE]" heading */}
             <h1
               className="mt-2 font-display font-bold leading-[1.0] tracking-tight md:mt-3"
-              style={{ fontSize: "clamp(2rem, 6vw, 5rem)" }}
+              style={{ fontSize: "clamp(1.75rem, 7vw, 5rem)" }}
             >
               I'M{" "}
               <span className="inline-block overflow-hidden align-bottom">
@@ -293,17 +362,17 @@ function Portfolio() {
             </h1>
 
             {/* Divider */}
-            <div className="mt-4 h-px w-12 bg-primary/70" />
+            <div className="mt-3 h-px w-10 bg-primary/70 md:mt-4 md:w-12" />
 
             {/* Short intro */}
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground md:text-base">
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground md:mt-4 md:text-base">
               B.Tech student in AI & Data Science. Turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
             </p>
 
             {/* Learn More — square box button */}
             <a
               href="#about"
-              className="mt-6 inline-flex items-center gap-2 rounded-none border-2 border-primary px-6 py-2.5 text-sm font-bold uppercase tracking-[0.2em] text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground active:scale-95 md:px-8 md:py-3"
+              className="mt-5 inline-flex items-center gap-2 rounded-none border-2 border-primary px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground active:scale-95 sm:text-sm md:mt-6 md:px-8 md:py-3"
             >
               Learn More
             </a>
@@ -311,10 +380,10 @@ function Portfolio() {
         </div>
       </section>
 
-      <div id="about" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:px-12 md:py-16">
+      <div id="about" className="mx-auto max-w-7xl px-4 py-8 sm:px-6 md:px-12 md:py-16">
 
         {/* About */}
-        <section className="mt-14 md:mt-24">
+        <section className="mt-12 md:mt-24">
           <div className="mb-6 md:mb-8">
             <SectionLabel title="About Me" />
           </div>
@@ -331,7 +400,7 @@ function Portfolio() {
         </section>
 
         {/* Core Skills */}
-        <section className="mt-14 md:mt-24">
+        <section className="mt-12 md:mt-24">
           <div className="mb-6 md:mb-8">
             <SectionLabel title="Core Skills" />
           </div>
@@ -339,17 +408,17 @@ function Portfolio() {
             {skills.map(({ name, icon: Icon }) => (
               <div
                 key={name}
-                className="group flex items-center gap-3 rounded-xl border border-border bg-card/60 px-4 py-3 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)]"
+                className="group flex items-center gap-2 rounded-xl border border-border bg-card/60 px-3 py-3 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] md:gap-3 md:px-4"
               >
                 <Icon className="h-4 w-4 shrink-0 text-primary" />
-                <span className="text-sm font-medium text-foreground/90">{name}</span>
+                <span className="text-xs font-medium text-foreground/90 leading-snug sm:text-sm">{name}</span>
               </div>
             ))}
           </div>
         </section>
 
         {/* Experience */}
-        <section className="mt-14 md:mt-24">
+        <section className="mt-12 md:mt-24">
           <div className="mb-6 md:mb-8">
             <SectionLabel title="Experience" />
           </div>
@@ -357,50 +426,48 @@ function Portfolio() {
             <div className="relative border-l border-border/60 pl-5 ml-3 space-y-10 md:pl-8 md:ml-4 md:space-y-12">
               {/* Timeline Node */}
               <div className="relative">
-                {/* Bullet node on the left line */}
                 <span className="absolute -left-[29px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background border border-primary md:-left-[37px]">
                   <span className="h-2 w-2 rounded-full bg-primary" />
                 </span>
-                
-                {/* Content Card */}
+
                 <div className="group rounded-2xl border border-border bg-card/40 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] p-4 md:p-6">
                   <div className="flex items-start gap-3 md:gap-5">
-                  {/* Logo — small box on left */}
-                  <div className="shrink-0 flex items-center justify-center bg-white border border-border w-12 h-12 p-1 md:w-16 md:h-16 md:p-1.5">
-                    <img
-                      src="/whiteandbox-logo.jpg"
-                      alt="White and Box logo"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  {/* Content — right side */}
-                  <div className="flex-1">
-                    <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">UI/UX Design Intern</h3>
-                    <p className="text-sm font-semibold text-primary mt-1">
-                      White and Box – Tech Products & Services | Bengaluru, Karnataka
-                    </p>
-                    <p className="mt-1 font-mono text-xs text-muted-foreground">
-                      Dec 2025 – Jan 2026
-                    </p>
-                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
-                      White and Box is a technology company providing innovative digital products and services in the tech industry. During my internship as a UI/UX Design Intern, I contributed to designing user-centered digital experiences, improving interface usability, and creating visually engaging designs for web and mobile platforms.
-                    </p>
-                    <ul className="mt-6 grid grid-cols-1 gap-3 text-sm text-foreground/85">
-                      {[
-                        "Assisted in user research, wireframing, and prototype development for web and mobile applications.",
-                        "Created intuitive and visually appealing user interface designs using Figma and design systems.",
-                        "Collaborated with developers and product teams to ensure seamless implementation of design solutions.",
-                        "Improved user experience by analyzing user behavior and identifying usability issues.",
-                        "Supported the creation of responsive layouts, design documentation, and interactive prototypes.",
-                        "Followed industry-standard UI/UX principles, accessibility guidelines, and design best practices as part of the internship program."
-                      ].map((bullet, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                          <span className="leading-relaxed">{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    {/* Logo */}
+                    <div className="shrink-0 flex items-center justify-center bg-white border border-border w-10 h-10 p-1 md:w-16 md:h-16 md:p-1.5">
+                      <img
+                        src="/whiteandbox-logo.jpg"
+                        alt="White and Box logo"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    {/* Content */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-display text-lg text-foreground group-hover:text-primary transition-colors md:text-xl">UI/UX Design Intern</h3>
+                      <p className="text-xs font-semibold text-primary mt-1 leading-snug sm:text-sm">
+                        White and Box – Tech Products & Services | Bengaluru, Karnataka
+                      </p>
+                      <p className="mt-1 font-mono text-xs text-muted-foreground">
+                        Dec 2025 – Jan 2026
+                      </p>
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
+                        White and Box is a technology company providing innovative digital products and services in the tech industry. During my internship as a UI/UX Design Intern, I contributed to designing user-centered digital experiences, improving interface usability, and creating visually engaging designs for web and mobile platforms.
+                      </p>
+                      <ul className="mt-4 grid grid-cols-1 gap-2.5 text-sm text-foreground/85 md:mt-6 md:gap-3">
+                        {[
+                          "Assisted in user research, wireframing, and prototype development for web and mobile applications.",
+                          "Created intuitive and visually appealing user interface designs using Figma and design systems.",
+                          "Collaborated with developers and product teams to ensure seamless implementation of design solutions.",
+                          "Improved user experience by analyzing user behavior and identifying usability issues.",
+                          "Supported the creation of responsive layouts, design documentation, and interactive prototypes.",
+                          "Followed industry-standard UI/UX principles, accessibility guidelines, and design best practices as part of the internship program."
+                        ].map((bullet, i) => (
+                          <li key={i} className="flex items-start gap-2 md:gap-3">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                            <span className="leading-relaxed">{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -413,27 +480,25 @@ function Portfolio() {
 
                 <div className="group rounded-2xl border border-border bg-card/40 backdrop-blur transition hover:border-primary/60 hover:bg-card hover:shadow-[0_0_30px_-10px_var(--color-primary)] p-4 md:p-6">
                   <div className="flex items-start gap-3 md:gap-5">
-                    {/* Logo — small box on left */}
-                    <div className="shrink-0 flex items-center justify-center bg-white border border-border w-12 h-12 p-1 md:w-16 md:h-16 md:p-1.5">
+                    <div className="shrink-0 flex items-center justify-center bg-white border border-border w-10 h-10 p-1 md:w-16 md:h-16 md:p-1.5">
                       <img
                         src="/makelabs-logo.jpg"
                         alt="MAKE Labs logo"
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    {/* Content — right side */}
-                    <div className="flex-1">
-                      <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">UI/UX Design Intern</h3>
-                      <p className="text-sm font-semibold text-primary mt-1">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-display text-lg text-foreground group-hover:text-primary transition-colors md:text-xl">UI/UX Design Intern</h3>
+                      <p className="text-xs font-semibold text-primary mt-1 leading-snug sm:text-sm">
                         MAKE Labs | Krishnagiri & Bengaluru
                       </p>
                       <p className="mt-1 font-mono text-xs text-muted-foreground">
                         June 2025 – July 2025
                       </p>
-                      <p className="mt-4 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
                         MAKE Labs is a technology startup specializing in web design, product development, research and development, robotics, and innovative technology solutions. I worked as a UI/UX Design Intern, contributing to the design and development of user-friendly digital experiences for web and mobile platforms.
                       </p>
-                      <ul className="mt-6 grid grid-cols-1 gap-3 text-sm text-foreground/85">
+                      <ul className="mt-4 grid grid-cols-1 gap-2.5 text-sm text-foreground/85 md:mt-6 md:gap-3">
                         {[
                           "Assisted in designing intuitive and visually appealing user interfaces for websites and digital products.",
                           "Created wireframes, user flows, and interactive prototypes to enhance user experience and usability.",
@@ -442,7 +507,7 @@ function Portfolio() {
                           "Designed responsive layouts, landing pages, and branding materials while maintaining visual consistency.",
                           "Followed modern UI/UX design principles, design system standards, and user-centered design practices throughout the internship."
                         ].map((bullet, i) => (
-                          <li key={i} className="flex items-start gap-3">
+                          <li key={i} className="flex items-start gap-2 md:gap-3">
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                             <span className="leading-relaxed">{bullet}</span>
                           </li>
@@ -457,11 +522,11 @@ function Portfolio() {
         </section>
 
         {/* Projects */}
-        <section className="mt-14 md:mt-24">
+        <section className="mt-12 md:mt-24">
           <div className="mb-6 md:mb-8">
             <SectionLabel title="Projects" />
           </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {projects.map((project) => (
               <div
                 key={project.title}
@@ -477,7 +542,6 @@ function Portfolio() {
                     style={{ aspectRatio: "16/9" }}
                     aria-label={`Open ${project.title} prototype`}
                   >
-                    {/* Scaled iframe showing actual Figma first frame */}
                     <div className="absolute inset-0 overflow-hidden pointer-events-none">
                       <iframe
                         src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.figma)}&hide-ui=1`}
@@ -494,11 +558,7 @@ function Portfolio() {
                         sandbox="allow-scripts allow-same-origin"
                       />
                     </div>
-
-                    {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-
-                    {/* Hover overlay */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="rounded-full bg-black/60 p-3 backdrop-blur-sm">
                         <ExternalLink className="h-6 w-6 text-white" />
@@ -507,7 +567,6 @@ function Portfolio() {
                         View Prototype
                       </span>
                     </div>
-
                   </a>
                 )}
 
@@ -534,29 +593,29 @@ function Portfolio() {
                 )}
 
                 {/* Card body */}
-                <div className="flex flex-col flex-1 p-6">
-                  <div className="mb-4 h-1 w-10 rounded-full bg-primary group-hover:w-16 transition-all duration-300" />
-                  <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">
+                <div className="flex flex-col flex-1 p-5 md:p-6">
+                  <div className="mb-3 h-1 w-10 rounded-full bg-primary group-hover:w-16 transition-all duration-300" />
+                  <h3 className="font-display text-lg text-foreground group-hover:text-primary transition-colors md:text-xl">
                     {project.title}
                   </h3>
-                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1">
                     {project.description}
                   </p>
 
                   {/* Tags + Star/Fork row */}
-                  <div className="mt-4 flex items-center justify-between gap-2 flex-wrap">
-                    <div className="flex flex-wrap gap-2">
+                  <div className="mt-4 flex items-start justify-between gap-2 flex-wrap">
+                    <div className="flex flex-wrap gap-1.5">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full border border-primary/30 bg-primary/10 px-3 py-0.5 font-mono text-xs text-primary"
+                          className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 font-mono text-[11px] text-primary"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
                     {project.github && (
-                      <div className="flex items-center gap-3 text-muted-foreground">
+                      <div className="flex items-center gap-3 text-muted-foreground shrink-0">
                         <a
                           href={`${project.github}/stargazers`}
                           target="_blank"
@@ -583,7 +642,7 @@ function Portfolio() {
 
                   {/* View Project / View Prototype button */}
                   {(project.github || ("figma" in project && project.figma)) && (
-                    <div className="mt-6">
+                    <div className="mt-5">
                       <StarBorder
                         as="a"
                         href={project.github ?? ("figma" in project ? project.figma : "#")}
@@ -609,7 +668,7 @@ function Portfolio() {
         </section>
 
         {/* Connecting, Learning, and Growing Together */}
-        <section className="mt-14 md:mt-24">
+        <section className="mt-12 md:mt-24">
           <div className="mb-6 md:mb-8">
             <SectionLabel title="Connecting, Learning & Growing" />
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
@@ -626,7 +685,7 @@ function Portfolio() {
             const Column = ({ posts, duration, delay = "0s" }: { posts: string[]; duration: string; delay?: string }) => (
               <div className="flex-1 min-w-0 overflow-hidden" style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
                 <div
-                  className="linkedin-wall-col flex flex-col gap-3"
+                  className="linkedin-wall-col flex flex-col gap-2 md:gap-3"
                   style={{ animation: `wallScroll ${duration} linear ${delay} infinite` }}
                 >
                   {[...posts, ...posts].map((src, i) => (
@@ -656,7 +715,7 @@ function Portfolio() {
               <div
                 className="linkedin-feed-frame relative w-full overflow-hidden rounded-[20px] transition-all duration-300"
                 style={{
-                  height: "clamp(340px, 55vh, 680px)",
+                  height: "clamp(280px, 50vh, 680px)",
                   background: "rgba(8, 8, 18, 0.80)",
                   border: "1px solid rgba(56, 189, 248, 0.35)",
                   boxShadow: "0 0 40px -10px rgba(56, 189, 248, 0.3), inset 0 0 80px rgba(0,0,0,0.4), 0 12px 50px rgba(0,0,0,0.7)",
@@ -669,7 +728,7 @@ function Portfolio() {
                   <Column posts={col1} duration="45s" delay="0s" />
                   <Column posts={col2} duration="55s" delay="-18s" />
                   <div className="hidden sm:flex flex-1 min-w-0 overflow-hidden" style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
-                    <div className="linkedin-wall-col flex flex-col gap-3 w-full" style={{ animation: `wallScroll 40s linear -8s infinite` }}>
+                    <div className="linkedin-wall-col flex flex-col gap-2 w-full md:gap-3" style={{ animation: `wallScroll 40s linear -8s infinite` }}>
                       {[...col3, ...col3].map((src, i) => (
                         <a key={i} href="https://linkedin.com/in/udhaya-prakash-v-022b22374" target="_blank" rel="noreferrer" className="linkedin-post-card group relative block overflow-hidden rounded-xl transition-all duration-300 cursor-pointer" style={{ border: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.03)" }}>
                           <img src={src} alt="LinkedIn post" className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" draggable={false} />
@@ -689,32 +748,37 @@ function Portfolio() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="mt-14 md:mt-24">
+        <section id="contact" className="mt-12 md:mt-24">
           {/* Open for header */}
-          <div className="mb-10 max-w-2xl md:mb-16">
-            <h2 className="font-display flex flex-wrap items-center gap-x-3 gap-y-2 text-3xl font-bold leading-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-              I'm open for
-              <RotatingText
-                texts={["Networking", "Collaboration", "Suggestions"]}
-                rotationInterval={1800}
-                auto={true}
-                loop={true}
-                staggerFrom="last"
-                initial={{ y: "100%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: "-120%", opacity: 0 }}
-                staggerDuration={0.025}
-                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                mainClassName="inline-flex px-3 py-1 rounded-lg bg-cyan-400 text-black font-semibold overflow-hidden"
-                splitLevelClassName="overflow-hidden"
-              />
+          <div className="mb-8 max-w-2xl md:mb-16">
+            <h2
+              className="font-display font-bold leading-tight text-foreground"
+              style={{ fontSize: "clamp(1.75rem, 6vw, 4.5rem)" }}
+            >
+              <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                I'm open for
+                <RotatingText
+                  texts={["Networking", "Collaboration", "Suggestions"]}
+                  rotationInterval={1800}
+                  auto={true}
+                  loop={true}
+                  staggerFrom="last"
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: "-120%", opacity: 0 }}
+                  staggerDuration={0.025}
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  mainClassName="inline-flex px-3 py-1 rounded-lg bg-cyan-400 text-black font-semibold overflow-hidden"
+                  splitLevelClassName="overflow-hidden"
+                />
+              </span>
             </h2>
-            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
               I appreciate your interest in connecting with me. I'm excited to explore new opportunities, receive feedback, collaborate on projects, and broaden my network.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               For any specific questions or comments, please don't hesitate to contact me directly at{" "}
-              <a href="mailto:udhayaprakashv.24@gmail.com" className="text-sky-400 hover:text-cyan-300 transition-colors duration-200 font-medium">
+              <a href="mailto:udhayaprakashv.24@gmail.com" className="text-sky-400 hover:text-cyan-300 transition-colors duration-200 font-medium break-all sm:break-normal">
                 udhayaprakashv.24@gmail.com
               </a>
               . I strive to respond to all messages within 24 hours, although it may take a bit longer during busy periods.
@@ -730,7 +794,7 @@ function Portfolio() {
 
           {/* Contact card */}
           <div
-            className="w-full rounded-3xl p-8 md:p-12"
+            className="w-full rounded-3xl p-5 sm:p-8 md:p-12"
             style={{
               background: "rgba(8, 12, 28, 0.85)",
               border: "1px solid rgba(56, 189, 248, 0.18)",
@@ -740,8 +804,8 @@ function Portfolio() {
             }}
           >
             {/* Card header */}
-            <div className="mb-8 text-center">
-              <h3 className="font-display text-3xl font-bold text-foreground md:text-4xl">
+            <div className="mb-6 text-center md:mb-8">
+              <h3 className="font-display text-2xl font-bold text-foreground md:text-3xl lg:text-4xl">
                 Keep the Connection
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">Sign up to get the latest news</p>
@@ -753,7 +817,7 @@ function Portfolio() {
               {/* Success notification */}
               {formStatus === "success" && (
                 <div
-                  className="mb-5 flex items-start gap-3 rounded-xl px-5 py-4 text-sm"
+                  className="mb-5 flex items-start gap-3 rounded-xl px-4 py-3 text-sm sm:px-5 sm:py-4"
                   style={{
                     background: "rgba(16,185,129,0.1)",
                     border: "1px solid rgba(16,185,129,0.35)",
@@ -780,7 +844,7 @@ function Portfolio() {
               {/* Error notification */}
               {(formStatus === "error" || formError) && formStatus !== "success" && (
                 <div
-                  className="mb-5 flex items-start gap-3 rounded-xl px-5 py-4 text-sm"
+                  className="mb-5 flex items-start gap-3 rounded-xl px-4 py-3 text-sm sm:px-5 sm:py-4"
                   style={{
                     background: "rgba(239,68,68,0.08)",
                     border: "1px solid rgba(239,68,68,0.3)",
@@ -801,8 +865,8 @@ function Portfolio() {
                 </div>
               )}
 
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <div className="flex-1 flex flex-col gap-1">
+              <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+                <div className="flex-1">
                   <input
                     type="email"
                     value={contactEmail}
@@ -820,7 +884,7 @@ function Portfolio() {
                     onBlur={e => (e.currentTarget.style.borderColor = "rgba(56,189,248,0.18)")}
                   />
                 </div>
-                <div className="flex-1 flex flex-col gap-1">
+                <div className="flex-1">
                   <input
                     type="text"
                     value={contactQuery}
@@ -844,7 +908,7 @@ function Portfolio() {
                 <button
                   type="submit"
                   disabled={formStatus === "submitting" || formStatus === "success"}
-                  className="relative overflow-hidden rounded-full px-10 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="relative overflow-hidden rounded-full px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 sm:px-10"
                   style={{
                     background: "rgba(8,12,28,0.9)",
                     border: "1px solid rgba(56,189,248,0.55)",
@@ -887,14 +951,14 @@ function Portfolio() {
             </form>
 
             {/* Divider */}
-            <div className="mx-auto mt-10 max-w-2xl h-px" style={{ background: "linear-gradient(to right, transparent, rgba(56,189,248,0.25), transparent)" }} />
+            <div className="mx-auto mt-8 max-w-2xl h-px md:mt-10" style={{ background: "linear-gradient(to right, transparent, rgba(56,189,248,0.25), transparent)" }} />
 
             {/* Star rating */}
-            <div className="mt-8 flex flex-col items-center gap-4">
+            <div className="mt-6 flex flex-col items-center gap-4 md:mt-8">
               <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
                 Rate your experience
               </p>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 sm:gap-3">
                 {[1,2,3,4,5].map(star => (
                   <button
                     key={star}
@@ -930,7 +994,7 @@ function Portfolio() {
         </section>
 
         {/* Footer */}
-        <footer className="mt-16 flex flex-col items-center justify-center gap-2 border-t border-border/30 pt-8 pb-6 text-center font-mono text-xs text-muted-foreground/60">
+        <footer className="mt-14 flex flex-col items-center justify-center gap-2 border-t border-border/30 pt-8 pb-6 text-center font-mono text-xs text-muted-foreground/60 md:mt-16">
           <span className="tracking-widest uppercase">Always be caffeinated!</span>
           <span className="tracking-[0.2em]">© Udhaya Prakash V (usos_boy)</span>
         </footer>
@@ -943,7 +1007,7 @@ function Portfolio() {
 function SectionLabel({ title }: { title: string }) {
   return (
     <div>
-      <h2 className="font-display text-3xl tracking-wide text-foreground sm:text-4xl md:text-5xl">{title}</h2>
+      <h2 className="font-display tracking-wide text-foreground" style={{ fontSize: "clamp(1.5rem, 5vw, 3rem)" }}>{title}</h2>
       <div className="mt-3 h-px w-12 bg-primary md:mt-4 md:w-16" />
     </div>
   );

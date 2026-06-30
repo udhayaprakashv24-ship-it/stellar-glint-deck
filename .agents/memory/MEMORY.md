@@ -1,0 +1,1 @@
+- [TanStack Start + Vite config](tanstack-start-vite.md) — do NOT add @vitejs/plugin-react before tanstackStart; order matters to avoid duplicate React Refresh injection.
