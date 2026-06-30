@@ -1,0 +1,73 @@
+Fix the portfolio website layout and responsiveness without changing the existing design, colors, animations, or functionality.
+
+Issues to fix:
+
+1. AI Chatbox
+- The AI chatbox is not working properly in fullscreen mode.
+- Make sure it opens, closes, minimizes, and sends messages correctly.
+- Keep it fixed at the bottom-right corner.
+- Ensure it remains visible by fixing z-index issues.
+- Make it responsive on desktop, tablet, and mobile.
+- Prevent it from overflowing outside the viewport.
+
+2. Hero Section Layout
+- The hero section should fit entirely within the first screen (100vh).
+- Position the profile photo, name, domain/role (rotating text), description, buttons, and social icons perfectly.
+- Center all content both vertically and horizontally.
+- Ensure proper spacing between every element.
+- Prevent overlapping, clipping, or unnecessary whitespace.
+- Keep the profile image proportional using object-fit: cover.
+- Make the image responsive across all screen sizes.
+- Use responsive typography with clamp() or equivalent responsive sizing.
+
+3. Fullscreen Responsiveness
+- The layout breaks when viewed in fullscreen.
+- Fix alignment for:
+  • 1920×1080
+  • 1600×900
+  • 1440×900
+  • 1366×768
+  • 1280×720
+  • 1024×768
+  • Tablets
+  • Mobile devices
+- Ensure all elements scale smoothly.
+- Remove horizontal scrolling.
+- Fix any overflowing content.
+
+4. Hero Content
+Ensure the following fits perfectly within the first page:
+- Profile Photo
+- Full Name
+- Domain/Profession (Rotating Text)
+- Short Introduction
+- Resume Button
+- Contact Button
+- Social Icons
+
+Everything should be visible without requiring the user to scroll.
+
+5. Layout Improvements
+- Use Flexbox or CSS Grid for better alignment.
+- Maintain equal spacing and consistent padding.
+- Keep the profile image as the main visual focus.
+- Align text properly with the image.
+- Ensure buttons stay aligned regardless of screen size.
+
+6. Performance
+- Do not change the design or color palette.
+- Do not remove existing animations.
+- Preserve all current functionality.
+- Optimize responsiveness using modern CSS practices.
+
+7. Final Checklist
+Verify before finishing:
+✔ AI chatbox works correctly in fullscreen.
+✔ Hero section fits within one screen (100vh).
+✔ Profile photo, name, and domain are perfectly aligned.
+✔ Rotating text works correctly.
+✔ No overlapping or clipped elements.
+✔ No horizontal scrolling.
+✔ Fully responsive across all screen sizes.
+✔ Existing design and animations remain unchanged.
+✔ Code is clean, responsive, and production-ready.

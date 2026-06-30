@@ -127,7 +127,7 @@ export default function AIChat() {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label="Open AI Assistant"
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95"
+        className="fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95"
         style={{
           background: "rgba(8,12,28,0.92)",
           border: "1.5px solid rgba(56,189,248,0.55)",
@@ -143,14 +143,17 @@ export default function AIChat() {
 
       {/* Chat window */}
       <div
-        className="fixed bottom-24 right-6 z-50 flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right"
+        className="fixed z-[9999] flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right"
         style={{
-          width: "min(380px, calc(100vw - 24px))",
-          height: open ? "520px" : "0px",
+          bottom: "5.5rem",
+          right: "1.5rem",
+          width: "min(380px, calc(100vw - 2rem))",
+          height: open ? "min(520px, calc(100vh - 7rem))" : "0px",
+          maxHeight: "calc(100vh - 7rem)",
           opacity: open ? 1 : 0,
           pointerEvents: open ? "auto" : "none",
           borderRadius: "20px",
-          background: "rgba(8,12,28,0.92)",
+          background: "rgba(8,12,28,0.96)",
           border: "1px solid rgba(56,189,248,0.22)",
           boxShadow: "0 0 50px -10px rgba(56,189,248,0.2), 0 24px 60px rgba(0,0,0,0.7)",
           backdropFilter: "blur(20px)",

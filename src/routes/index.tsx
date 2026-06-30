@@ -5,6 +5,7 @@ const portrait = { url: "/udhaya-portrait-nobg.png" };
 import {
   Phone, Mail, Linkedin, Github, Twitter, Instagram,
   BarChart3, Database, Palette, Brain, Star, GitFork, ExternalLink, X, ZoomIn,
+  Download, ArrowRight,
 } from "lucide-react";
 import StarBorder from "@/components/StarBorder";
 import RotatingText from "@/components/RotatingText";
@@ -191,9 +192,11 @@ function Portfolio() {
         <div className="absolute bottom-0 right-0 h-[600px] w-[600px] rounded-full bg-primary/15 blur-[140px]" />
       </div>
 
-      {/* Header */}
-      <div className="mx-auto max-w-7xl px-6 py-10 md:px-12 md:py-16">
-        <header className="mb-0 flex items-center justify-end border-b border-border/40 pb-6">
+      {/* ── Full-screen Hero (100vh) ── */}
+      <section className="relative flex min-h-screen w-full flex-col overflow-hidden">
+
+        {/* Header / Nav */}
+        <header className="flex shrink-0 items-center justify-end border-b border-border/40 px-6 py-4 md:px-12">
           <div className="flex items-center gap-4">
             {contacts.map(({ icon: Icon, label, href }) => (
               <a
@@ -209,51 +212,106 @@ function Portfolio() {
             ))}
           </div>
         </header>
-      </div>
 
-      {/* Hero — full-width so photo can sit flush left */}
-      <section className="relative w-full overflow-hidden">
-        {portrait.url ? (
-          <div className="flex flex-col md:flex-row items-end">
-            {/* Photo flush to left */}
-            <div className="relative flex-shrink-0 flex items-end justify-start pl-0">
-              <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-primary/25 blur-3xl" aria-hidden />
-              <img
-                src={portrait.url}
-                alt="Portrait of Udhaya Prakash V"
-                className="relative object-contain object-bottom transition-transform duration-500 hover:scale-105"
-                style={{ height: "420px", width: "auto" }}
-              />
-            </div>
-            {/* Name on the right */}
-            <div className="flex flex-col justify-center pb-12 px-8 md:px-16">
-              <h1 className="font-display text-5xl leading-[0.95] tracking-tight text-foreground md:text-7xl lg:text-8xl">
+        {/* Hero content — vertically centered in remaining space */}
+        <div className="flex flex-1 items-center justify-center px-6 py-8 md:px-12">
+          <div className="flex w-full max-w-7xl flex-col items-center gap-8 md:flex-row md:items-end md:gap-10 lg:gap-16">
+
+            {/* Profile photo */}
+            {portrait.url && (
+              <div className="relative shrink-0 flex items-end justify-center md:justify-start">
+                <div
+                  className="absolute bottom-0 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 h-56 w-56 rounded-full bg-primary/25 blur-3xl"
+                  aria-hidden
+                />
+                <img
+                  src={portrait.url}
+                  alt="Portrait of Udhaya Prakash V"
+                  className="relative object-contain object-bottom transition-transform duration-500 hover:scale-[1.03]"
+                  style={{
+                    height: "clamp(220px, 38vh, 420px)",
+                    width: "auto",
+                    maxWidth: "clamp(180px, 30vw, 340px)",
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Text content */}
+            <div className="flex flex-col items-center text-center md:items-start md:text-left md:pb-8">
+              {/* Name */}
+              <h1
+                className="font-display font-bold leading-[0.92] tracking-tight"
+                style={{ fontSize: "clamp(2.6rem, 7vw, 6rem)" }}
+              >
                 UDHAYA
                 <br />
                 PRAKASH <span className="text-primary">V</span>
               </h1>
-              <div className="mt-5 h-px w-20 bg-primary" />
-              <p className="mt-5 text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground md:text-base">
-                Data Analytics
+
+              {/* Divider */}
+              <div className="mt-4 h-px w-16 bg-primary" />
+
+              {/* Rotating role */}
+              <div className="mt-4 flex items-center gap-2 font-display text-sm font-semibold uppercase tracking-[0.28em] text-muted-foreground md:text-base">
+                <RotatingText
+                  texts={["Data Analytics", "UI/UX Designer", "Problem Solver", "Creative Thinker"]}
+                  mainClassName="text-primary"
+                  splitLevelClassName="overflow-hidden"
+                  rotationInterval={2200}
+                />
+              </div>
+
+              {/* Short intro */}
+              <p
+                className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                B.Tech student in AI & Data Science — turning raw data into clear stories and crafting interfaces that make those stories feel effortless.
               </p>
-              <p className="mt-1 text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground md:text-base">
-                UI/UX Designer
-              </p>
+
+              {/* CTA Buttons */}
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+                <a
+                  href="mailto:udhayaprakashv.24@gmail.com?subject=Resume Request"
+                  className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-200 hover:scale-105 hover:shadow-primary/50 active:scale-95"
+                >
+                  <Download className="h-4 w-4" />
+                  Resume
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 rounded-xl border border-primary/50 px-5 py-2.5 text-sm font-semibold text-primary transition-all duration-200 hover:scale-105 hover:bg-primary/10 hover:border-primary active:scale-95"
+                >
+                  Contact Me
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+
+              {/* Social icons */}
+              <div className="mt-6 flex items-center gap-4">
+                {[
+                  { icon: Linkedin, href: "https://linkedin.com/in/udhaya-prakash-v-022b22374", label: "LinkedIn" },
+                  { icon: Github, href: "https://github.com/udhayaprakashv24-ship-it", label: "GitHub" },
+                  { icon: Twitter, href: "https://x.com/VUdhaya63542", label: "X / Twitter" },
+                  { icon: Instagram, href: "https://instagram.com/the_usos_boy", label: "Instagram" },
+                  { icon: Mail, href: "mailto:udhayaprakashv24@gmail.com", label: "Email" },
+                ].map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel="noreferrer"
+                    aria-label={label}
+                    className="flex h-9 w-9 items-center justify-center rounded-xl border border-border/60 text-muted-foreground transition-all duration-200 hover:border-primary/60 hover:text-primary hover:bg-primary/10 hover:scale-110"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-        ) : (
-          <div className="flex flex-col items-center text-center py-16 px-6">
-            <h1 className="font-display text-6xl leading-[0.95] tracking-tight text-foreground md:text-8xl">
-              UDHAYA
-              <br />
-              PRAKASH <span className="text-primary">V</span>
-            </h1>
-            <div className="mt-5 h-px w-20 bg-primary mx-auto" />
-            <p className="mt-5 text-sm font-medium uppercase tracking-[0.3em] text-muted-foreground md:text-base">
-              Data Analytics <span className="text-primary">·</span> UI/UX Designer
-            </p>
-          </div>
-        )}
+        </div>
       </section>
 
       <div className="mx-auto max-w-7xl px-6 py-10 md:px-12 md:py-16">
@@ -625,7 +683,7 @@ function Portfolio() {
         </section>
 
         {/* Contact */}
-        <section className="mt-24">
+        <section id="contact" className="mt-24">
           {/* Open for header */}
           <div className="mb-16 max-w-2xl">
             <h2 className="font-display text-5xl font-bold leading-tight text-foreground md:text-6xl lg:text-7xl flex flex-wrap items-center gap-x-4 gap-y-2">
