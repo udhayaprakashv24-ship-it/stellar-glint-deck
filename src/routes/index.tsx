@@ -449,10 +449,10 @@ function Portfolio() {
                       <p className="mt-1 font-mono text-xs text-muted-foreground">
                         Dec 2025 – Jan 2026
                       </p>
-                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
+                      <p className="hidden md:block mt-3 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
                         White and Box is a technology company providing innovative digital products and services in the tech industry. During my internship as a UI/UX Design Intern, I contributed to designing user-centered digital experiences, improving interface usability, and creating visually engaging designs for web and mobile platforms.
                       </p>
-                      <ul className="mt-4 grid grid-cols-1 gap-2.5 text-sm text-foreground/85 md:mt-6 md:gap-3">
+                      <ul className="hidden md:grid mt-4 grid-cols-1 gap-2.5 text-sm text-foreground/85 md:mt-6 md:gap-3">
                         {[
                           "Assisted in user research, wireframing, and prototype development for web and mobile applications.",
                           "Created intuitive and visually appealing user interface designs using Figma and design systems.",
@@ -495,10 +495,10 @@ function Portfolio() {
                       <p className="mt-1 font-mono text-xs text-muted-foreground">
                         June 2025 – July 2025
                       </p>
-                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
+                      <p className="hidden md:block mt-3 text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-3">
                         MAKE Labs is a technology startup specializing in web design, product development, research and development, robotics, and innovative technology solutions. I worked as a UI/UX Design Intern, contributing to the design and development of user-friendly digital experiences for web and mobile platforms.
                       </p>
-                      <ul className="mt-4 grid grid-cols-1 gap-2.5 text-sm text-foreground/85 md:mt-6 md:gap-3">
+                      <ul className="hidden md:grid mt-4 grid-cols-1 gap-2.5 text-sm text-foreground/85 md:mt-6 md:gap-3">
                         {[
                           "Assisted in designing intuitive and visually appealing user interfaces for websites and digital products.",
                           "Created wireframes, user flows, and interactive prototypes to enhance user experience and usability.",
@@ -598,17 +598,17 @@ function Portfolio() {
                   <h3 className="font-display text-lg text-foreground group-hover:text-primary transition-colors md:text-xl">
                     {project.title}
                   </h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1">
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1 line-clamp-2 md:line-clamp-none">
                     {project.description}
                   </p>
 
                   {/* Tags + Star/Fork row */}
                   <div className="mt-4 flex items-start justify-between gap-2 flex-wrap">
                     <div className="flex flex-wrap gap-1.5">
-                      {project.tags.map((tag) => (
+                      {project.tags.map((tag, i) => (
                         <span
                           key={tag}
-                          className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 font-mono text-[11px] text-primary"
+                          className={`rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 font-mono text-[11px] text-primary${i >= 2 ? " hidden md:inline-flex" : ""}`}
                         >
                           {tag}
                         </span>
