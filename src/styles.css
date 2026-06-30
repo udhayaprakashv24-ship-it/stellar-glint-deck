@@ -79,6 +79,28 @@
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Display headings: bright, high-contrast, luminous ── */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: oklch(0.99 0.005 220);
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Body / paragraph text: comfortable muted light ── */
+  p, li, label {
+    font-family: var(--font-sans);
+    color: var(--color-muted-foreground);
+    line-height: 1.75;
+  }
+
+  /* ── Heading glow on dark bg ── */
+  .font-display {
+    font-family: var(--font-display) !important;
+    color: oklch(0.99 0.005 220);
   }
 
   /* Selection highlight */
