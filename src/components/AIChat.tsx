@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { X, Bot, Send, ChevronDown } from "lucide-react";
+import { X, Send, ChevronDown } from "lucide-react";
 
 const PORTFOLIO_KB: Record<string, string> = {
   about:
@@ -127,7 +127,7 @@ export default function AIChat() {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label="Open AI Assistant"
-        className="fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95"
+        className="fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95 overflow-hidden"
         style={{
           background: "rgba(8,12,28,0.92)",
           border: "1.5px solid rgba(56,189,248,0.55)",
@@ -137,7 +137,7 @@ export default function AIChat() {
         {open ? (
           <ChevronDown className="h-6 w-6 text-sky-400" />
         ) : (
-          <Bot className="h-6 w-6 text-sky-400" />
+          <img src="/ai-cat-logo.jpeg" alt="AI Assistant" className="h-full w-full object-cover" />
         )}
       </button>
 
@@ -167,14 +167,13 @@ export default function AIChat() {
           style={{ borderBottom: "1px solid rgba(56,189,248,0.15)" }}
         >
           <div
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full overflow-hidden"
             style={{
-              background: "rgba(56,189,248,0.12)",
               border: "1px solid rgba(56,189,248,0.35)",
               boxShadow: "0 0 14px rgba(56,189,248,0.25)",
             }}
           >
-            <Bot className="h-5 w-5 text-sky-400" />
+            <img src="/ai-cat-logo.jpeg" alt="AI" className="h-full w-full object-cover" />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-foreground">AI Portfolio Assistant</p>

@@ -3,10 +3,18 @@ import { useState, useEffect, useRef } from "react";
 import { submitContact } from "../fns/contact";
 const portrait = { url: "/udhaya-portrait-nobg.png" };
 import {
-  Phone, Mail, Linkedin, Github, Twitter, Instagram,
+  Phone, Mail, Linkedin, Github, Instagram,
   BarChart3, Database, Palette, Brain, Star, GitFork, ExternalLink, X, ZoomIn,
   Download, ArrowRight,
 } from "lucide-react";
+
+function XBrandIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
 import StarBorder from "@/components/StarBorder";
 import RotatingText from "@/components/RotatingText";
 import AIChat from "@/components/AIChat";
@@ -100,7 +108,7 @@ const contacts = [
   { icon: Mail, label: "udhayaprakashv24@gmail.com", href: "mailto:udhayaprakashv24@gmail.com" },
   { icon: Linkedin, label: "linkedin.com/in/udhaya-prakash-v-022b22374", href: "https://linkedin.com/in/udhaya-prakash-v-022b22374" },
   { icon: Github, label: "github.com/udhayaprakashv24-ship-it", href: "https://github.com/udhayaprakashv24-ship-it" },
-  { icon: Twitter, label: "x.com/VUdhaya63542", href: "https://x.com/VUdhaya63542" },
+  { icon: XBrandIcon, label: "x.com/VUdhaya63542", href: "https://x.com/VUdhaya63542" },
   { icon: Instagram, label: "instagram.com/the_usos_boy", href: "https://instagram.com/the_usos_boy" },
 ];
 
